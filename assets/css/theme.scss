@@ -39,8 +39,15 @@ body {
 
 .wrapper {
   min-height: 100%;
+
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .site-header {
@@ -52,12 +59,6 @@ body {
   left: 0;
   right: 0;
   padding: 1rem 0;
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
 
   a {
     text-decoration: none;
@@ -111,6 +112,10 @@ body {
       li {
         display: inline-block;
         margin: 0 1rem;
+
+        a {
+          font-size: 2.2rem;
+        }
       }
     }
 
@@ -152,16 +157,12 @@ body {
       .hamburger-label {
         display: none !important;
       }
-
-      .nav-links li a {
-        font-size: 2.2rem;
-      }
     }
 
-    /* Tablet view (>1200px) */
+    /* Desktop view (>1200px) */
     @media (min-width: map.get($breakpoints, "desktop")) {
       .nav-links li a {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
     }
   }
