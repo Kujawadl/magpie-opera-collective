@@ -1,5 +1,6 @@
 title: Magpie Opera Collective
-baseurl: ""
+# TODO: Remove this once a custom domain is configured
+baseurl: "/magpie-opera-collective"
 theme: minima
 collections:
   artists:
