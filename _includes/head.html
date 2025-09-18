@@ -24,8 +24,12 @@
     href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
   {% if site.magpie_theme.logo_path %}
   <link rel="icon" href="{{ site.magpie_theme.logo_path }}" />
-  {% endif %} {{ page.head_content }}
+  {% endif %}
+
+  <base href="{{ site.baseurl }}/" />
+
+  {{ page.head_content }}
 </head>
