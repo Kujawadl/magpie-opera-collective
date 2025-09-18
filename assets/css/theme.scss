@@ -1,0 +1,188 @@
+---
+---
+
+@use "sass:color";
+@use "sass:map";
+
+@use "./fontawesome/variables" with (
+  // customizing $font-path - make sure it points to where your webfonts are stored in your project
+  $font-path: "../webfonts"
+);
+@use "./fontawesome/fontawesome";
+@use "./fontawesome/fa" as fa;
+@use "./fontawesome/solid" as fa-solid;
+
+$primaryColor: #59694f;
+$secondaryColor: #2a3723;
+$fontFamily: "Montserrat", sans-serif;
+$logoFontFamily: "Clicker Script", cursive;
+$textLogoSize: 10rem;
+
+$breakpoints: (
+  "mobile": 600px,
+  "tablet": 1000px,
+  "desktop": 1200px,
+);
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $fontFamily;
+  background: color.adjust($primaryColor, $lightness: 40%);
+  color: $primaryColor;
+  margin: 0;
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.site-header {
+  background-color: $secondaryColor;
+  font-family: $logoFontFamily;
+  color: $primaryColor !important;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 0;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: color.adjust($primaryColor, $lightness: 20%);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: color.adjust($primaryColor, $lightness: 40%);
+    }
+  }
+
+  .text-logo {
+    fill: $primaryColor;
+    display: block;
+
+    svg {
+      height: $textLogoSize;
+      width: auto;
+    }
+  }
+
+  .site-nav {
+    position: relative;
+    width: 100%;
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .hamburger-label {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      position: absolute;
+      right: 0;
+      top: $textLogoSize / 2;
+      transform: translateY(-50%);
+    }
+    input[type="checkbox"]:not(:checked) + .hamburger-label {
+      @include fa-solid.icon(fa.$var-bars);
+    }
+    input[type="checkbox"]:checked + .hamburger-label {
+      @include fa-solid.icon(fa.$var-times);
+    }
+
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        margin: 0 1rem;
+      }
+    }
+
+    /* Mobile view (<1000px) */
+    @media (max-width: map.get($breakpoints, "mobile")) {
+      text-align: center;
+
+      .hamburger-label {
+        display: block;
+      }
+
+      .nav-links {
+        visibility: hidden;
+        width: 100%;
+        text-align: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, visibility 0.4s ease-out;
+
+        li {
+          display: block;
+          margin: 0.5rem 0;
+        }
+      }
+
+      input[type="checkbox"]:checked + .hamburger-label + .nav-links {
+        visibility: visible;
+        max-height: 50vh;
+        transition: max-height 0.4s ease-in, visibility 0.4s ease-in;
+      }
+    }
+
+    /* Tablet view (>1000px) */
+    @media (min-width: map.get($breakpoints, "mobile")) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .hamburger-label {
+        display: none !important;
+      }
+
+      .nav-links li a {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* Tablet view (>1200px) */
+    @media (min-width: map.get($breakpoints, "desktop")) {
+      .nav-links li a {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+.site-footer {
+  background-color: $secondaryColor;
+  color: color.adjust($primaryColor, $lightness: 20%);
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  position: sticky;
+  top: 100vh;
+  left: 0;
+  right: 0;
+
+  a {
+    color: color.adjust($primaryColor, $lightness: 20%);
+
+    &:hover {
+      color: color.adjust($primaryColor, $lightness: 40%);
+    }
+  }
+}

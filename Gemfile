@@ -1,0 +1,5 @@
+source "https://rubygems.org"
+gem "base64", "~> 0.3.0"
+gem "csv", "~> 3.3.5"
+gem "jekyll", "~> 4.3.2"
+gem "minima", "~> 2.5"

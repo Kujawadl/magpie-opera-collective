@@ -1,0 +1,8 @@
+title: Magpie Opera Collective
+baseurl: ""
+theme: minima
+collections:
+  artists:
+    output: true
+  events:
+    output: true

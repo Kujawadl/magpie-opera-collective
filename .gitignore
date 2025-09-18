@@ -1,0 +1,14 @@
+_site/
+*.gem
+.bundle/
+vendor/
+.DS_Store
+node_modules/
+.env
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+*.log
+*.swp
+*.tmp
+*.bak
