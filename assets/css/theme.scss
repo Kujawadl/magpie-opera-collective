@@ -98,6 +98,17 @@ body {
         display: none;
       }
     }
+
+    .mobile {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+
+      & svg {
+        margin-right: 1rem;
+      }
+    }
+
     svg {
       height: $textLogoSize;
       width: auto;

@@ -2,7 +2,10 @@
   <div class="container">
     <nav class="site-nav">
       <a href="index.html" class="text-logo">
-        <span class="mobile">{% include logo.svg %}</span>
+        <span class="mobile">
+          {% include logo.svg %}
+          <span>{{ site.title }}</span>
+        </span>
         <span class="full">{% include text-logo.svg %}</span>
       </a>
       <input id="menu" type="checkbox" />
