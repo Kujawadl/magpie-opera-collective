@@ -1,6 +1,6 @@
 title: Magpie Opera Collective
-url: "https://jager-kujawa.com"
-baseurl: "/magpie-opera-collective"
+url: "https://magpieopera.org"
+baseurl: "/"
 theme: minima
 collections:
   artists:
