@@ -10,10 +10,20 @@ title: Upcoming Events
 
 	<h3 class="description">{{ event.description }}</h3>
 
+	{% if event.ticket_link %}
+		<a href="{{ event.ticket_link }}" target="_blank" class="btn tickets-btn">
+			Get Tickets
+			<i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
+		</a>
+	{% endif %}
+
 	<div class="location">
 		<span class="bold">Location:</span>
 		{% if event.location_url %}
-			<a href="{{ event.location_url }}">{{ event.location }}</a>
+			<a href="{{ event.location_url }}" target="_blank">
+				{{ event.location }}
+				<i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
+			</a>
 		{% else %}
 			{{ event.location }}
 		{% endif %}
