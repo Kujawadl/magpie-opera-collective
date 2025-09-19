@@ -17,6 +17,10 @@ $secondaryColor: #2a3723;
 $fontFamily: "Montserrat", sans-serif;
 $logoFontFamily: "Clicker Script", cursive;
 $textLogoSize: 10vw;
+$headerPadding: 1rem;
+$footerHeight: 5rem;
+$headerHeight: calc($textLogoSize + $headerPadding * 2);
+$topBodyMargin: 1rem;
 
 $breakpoints: (
   "mobile": 600px,
@@ -34,7 +38,7 @@ body {
   background: color.adjust($primaryColor, $lightness: 40%);
   color: $primaryColor;
   margin: 0;
-  height: 100%;
+  margin-top: calc($textLogoSize + $topBodyMargin);
 
   h1 {
     font-size: 3.5rem;
@@ -42,11 +46,9 @@ body {
   h2 {
     font-size: 3rem;
   }
-  h3: {
+  h3 {
     font-size: 2rem;
   }
-
-  margin-top: calc($textLogoSize + 1rem);
 }
 
 .wrapper {
@@ -71,7 +73,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  padding: 1rem 0;
+  padding: $headerPadding 0;
 
   a {
     text-decoration: none;
@@ -208,14 +210,14 @@ body {
 
 .site-footer {
   background: url(../images/roses.png), $primaryColor;
+  background-size: cover;
+  background-position: bottom;
   color: color.adjust($primaryColor, $lightness: 60%);
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
-  position: sticky;
-  top: 100vh;
-  left: 0;
-  right: 0;
+  margin-top: auto;
+  height: $footerHeight;
 
   a {
     color: color.adjust($primaryColor, $lightness: 60%);
@@ -227,6 +229,8 @@ body {
 }
 
 .page-content {
+  min-height: calc(100dvh - $headerHeight - $footerHeight - $topBodyMargin);
+
   h1,
   h2,
   h3,
@@ -247,7 +251,6 @@ body {
     margin-top: 4rem;
   }
   .category-name {
-    // display: inline-block;
     border-bottom: 3px solid $primaryColor;
     line-height: 3rem;
   }
