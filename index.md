@@ -3,8 +3,6 @@ layout: home
 title: Welcome to Magpie Opera Collective
 ---
 
-# Magpie Opera Collective
-
 Welcome to the Magpie Opera Collective! Discover our artists, upcoming events, and learn more about our mission.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat pellentesque felis tempus faucibus. Pellentesque rutrum nibh mi, at scelerisque enim hendrerit ut. Maecenas ullamcorper lectus neque, sit amet varius sapien malesuada ac. Sed ultrices purus sodales leo tristique sodales. Pellentesque vitae pharetra tellus. Duis elementum ex non magna viverra, vel tristique nibh vehicula. In bibendum laoreet ipsum, ut consequat sem tempor quis. Ut feugiat nisl nisl, in porttitor urna auctor a. Nam a fermentum neque. Aliquam in ultrices odio, non volutpat nulla. Vestibulum congue fringilla quam, vitae dignissim leo condimentum eu.
