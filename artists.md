@@ -2,7 +2,7 @@
 layout: page
 title: Meet Our Artists
 permalink: artists
-image: assets/images/all-artists.png
+image: assets/images/artists.png
 ---
 
 {% for group in site.artist_categories %}
