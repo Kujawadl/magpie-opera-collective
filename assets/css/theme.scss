@@ -35,6 +35,16 @@ body {
   color: $primaryColor;
   margin: 0;
   height: 100%;
+
+  h1 {
+    font-size: 3.5rem;
+  }
+  h2 {
+    font-size: 3rem;
+  }
+  h3: {
+    font-size: 2rem;
+  }
 }
 
 .wrapper {
@@ -51,9 +61,10 @@ body {
 }
 
 .site-header {
-  background-color: $secondaryColor;
+  background: url(../images/roses.png), $primaryColor;
+  background-position: center;
+  background-size: cover;
   font-family: $logoFontFamily;
-  color: $primaryColor !important;
   position: sticky;
   top: 0;
   left: 0;
@@ -62,7 +73,7 @@ body {
 
   a {
     text-decoration: none;
-    color: color.adjust($primaryColor, $lightness: 20%);
+    color: color.adjust($primaryColor, $lightness: 60%);
     transition: color 0.3s ease;
 
     &:hover {
@@ -169,8 +180,8 @@ body {
 }
 
 .site-footer {
-  background-color: $secondaryColor;
-  color: color.adjust($primaryColor, $lightness: 20%);
+  background: url(../images/roses.png), $primaryColor;
+  color: color.adjust($primaryColor, $lightness: 60%);
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
@@ -180,10 +191,62 @@ body {
   right: 0;
 
   a {
-    color: color.adjust($primaryColor, $lightness: 20%);
+    color: color.adjust($primaryColor, $lightness: 60%);
 
     &:hover {
       color: color.adjust($primaryColor, $lightness: 40%);
+    }
+  }
+}
+
+.page-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $logoFontFamily;
+  }
+
+  .post-title {
+    text-align: center;
+  }
+}
+
+.artist-category {
+  margin-top: 0;
+  &:not(:first-of-type) {
+    margin-top: 4rem;
+  }
+  .category-name {
+    // display: inline-block;
+    border-bottom: 3px solid $primaryColor;
+    line-height: 3rem;
+  }
+
+  .artist-bio {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+
+    display: flex;
+    &:nth-child(odd) {
+      .headshot {
+        order: 3;
+      }
+    }
+    .headshot {
+      margin: 0 1rem;
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .artist-name {
+      text-align: center;
     }
   }
 }

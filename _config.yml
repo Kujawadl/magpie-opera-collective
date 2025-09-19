@@ -7,3 +7,9 @@ collections:
     output: true
   events:
     output: true
+artist_categories:
+ - Soprani
+ - Mezzo-Soprani
+ - Tenors
+ - Baritones
+ - Accompanist
