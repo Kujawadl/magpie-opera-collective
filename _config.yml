@@ -1,6 +1,6 @@
 title: Magpie Opera Collective
 url: "https://magpieopera.org"
-baseurl: "/"
+baseurl: ""
 theme: minima
 collections:
   artists:
