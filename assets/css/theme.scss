@@ -16,7 +16,7 @@ $primaryColor: #59694f;
 $secondaryColor: #2a3723;
 $fontFamily: "Montserrat", sans-serif;
 $logoFontFamily: "Clicker Script", cursive;
-$textLogoSize: 10rem;
+$textLogoSize: 10vw;
 
 $breakpoints: (
   "mobile": 600px,
@@ -45,6 +45,8 @@ body {
   h3: {
     font-size: 2rem;
   }
+
+  margin-top: calc($textLogoSize + 1rem);
 }
 
 .wrapper {
@@ -65,7 +67,7 @@ body {
   background-position: center;
   background-size: cover;
   font-family: $logoFontFamily;
-  position: sticky;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -85,6 +87,17 @@ body {
     fill: $primaryColor;
     display: block;
 
+    @media (min-width: map.get($breakpoints, "mobile")) {
+      text-align: left;
+      .mobile {
+        display: none;
+      }
+    }
+    @media (max-width: map.get($breakpoints, "mobile") + 1px) {
+      .full {
+        display: none;
+      }
+    }
     svg {
       height: $textLogoSize;
       width: auto;
@@ -105,8 +118,9 @@ body {
       font-size: 1.5rem;
       position: absolute;
       right: 0;
-      top: $textLogoSize / 2;
+      top: 5vw;
       transform: translateY(-50%);
+      color: color.adjust($primaryColor, $lightness: 60%);
     }
     input[type="checkbox"]:not(:checked) + .hamburger-label {
       @include fa-solid.icon(fa.$var-bars);
@@ -132,8 +146,6 @@ body {
 
     /* Mobile view (<1000px) */
     @media (max-width: map.get($breakpoints, "mobile")) {
-      text-align: center;
-
       .hamburger-label {
         display: block;
       }
