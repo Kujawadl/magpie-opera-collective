@@ -64,7 +64,7 @@ body {
 
 .site-header {
   background: url(../images/roses.png), $primaryColor;
-  background-position: center;
+  background-position: top;
   background-size: cover;
   font-family: $logoFontFamily;
   position: absolute;
@@ -97,15 +97,14 @@ body {
       .full {
         display: none;
       }
-    }
+      .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: left;
 
-    .mobile {
-      display: flex;
-      align-items: center;
-      justify-content: left;
-
-      & svg {
-        margin-right: 1rem;
+        & svg {
+          margin-right: 1rem;
+        }
       }
     }
 
@@ -158,7 +157,12 @@ body {
     /* Mobile view (<1000px) */
     @media (max-width: map.get($breakpoints, "mobile")) {
       .hamburger-label {
-        display: block;
+        // Make label bounding box wider and taller so users don't fat-finger press the home link
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: $textLogoSize !important;
+        height: $textLogoSize;
       }
 
       .nav-links {
