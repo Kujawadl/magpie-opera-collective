@@ -14,13 +14,14 @@
 
 $primaryColor: #59694f;
 $secondaryColor: #2a3723;
-$fontFamily: "Montserrat", sans-serif;
+$fontFamily: Newsreader, serif;
 $logoFontFamily: "Clicker Script", cursive;
 $textLogoSize: 10vw;
 $headerPadding: 1rem;
 $footerHeight: 5rem;
 $headerHeight: calc($textLogoSize + $headerPadding * 2);
 $topBodyMargin: 1rem;
+$containerWidth: 800px;
 
 $breakpoints: (
   "mobile": 600px,
@@ -59,7 +60,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: $containerWidth;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -288,4 +289,16 @@ body {
       }
     }
   }
+}
+
+.event {
+  margin-bottom: 1rem;
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $primaryColor;
+  }
+}
+
+/* Utility Classes */
+.bold {
+  font-weight: bold;
 }

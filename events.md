@@ -3,13 +3,49 @@ layout: page
 title: Upcoming Events
 ---
 
-## Upcoming Events
-
 {% for event in site.events %}
 
-### {{ event.title }}
+<div class="event">
+	<h2 class="title">{{ event.title }}</h2>
 
-**Date:** {{ event.date }}
+	<h3 class="description">{{ event.description }}</h3>
 
-{{ event.description }}
+	<div class="location">
+		<span class="bold">Location:</span>
+		{% if event.location_url %}
+			<a href="{{ event.location_url }}">{{ event.location }}</a>
+		{% else %}
+			{{ event.location }}
+		{% endif %}
+	</div>
+
+	<div class="bold">Showings:</div>
+	<ul class="showings">
+		{% for showing in event.showings %}
+			<li>
+				<div class="bold">{{ showing.date | date: "%B, %-d %Y" }}</div>
+				{% if showing.doors_open %}<div><span class="bold">Doors Open:</span> {{ showing.doors_open }}</div>{% endif %}
+				{% if showing.show_time %}<div><span class="bold">Show Time:</span> {{ showing.show_time }}</div>{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+	
+	<div class="bold">Pricing:</div>
+	<ul>
+		{% for pricing in event.ticket_pricing %}
+			<li>{{ pricing }}</li>
+		{% endfor %}
+	</ul>
+
+	{% if event.run_time %}<div class="runtime"><span class="bold">Run Time:</span> {{ event.run_time }}</div>{% endif %}
+	
+	{% if event.notes %}
+		<div class="bold">Notes:</div>
+		<ul>
+			{% for note in event.notes %}
+				<li>{{ note }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+</div>
 {% endfor %}
