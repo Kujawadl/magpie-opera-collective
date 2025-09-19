@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Meet Our Artists
+permalink: artists
 ---
 
 {% for group in site.artist_categories %}

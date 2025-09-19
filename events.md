@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Upcoming Events
+permalink: events
 ---
 
 {% for event in site.events %}
