@@ -87,13 +87,13 @@ body {
     fill: $primaryColor;
     display: block;
 
-    @media (min-width: map.get($breakpoints, "mobile")) {
+    @media (min-width: map.get($breakpoints, "mobile") + 1px) {
       text-align: left;
       .mobile {
         display: none;
       }
     }
-    @media (max-width: map.get($breakpoints, "mobile") + 1px) {
+    @media (max-width: map.get($breakpoints, "mobile")) {
       .full {
         display: none;
       }
@@ -172,7 +172,7 @@ body {
     }
 
     /* Tablet view (>1000px) */
-    @media (min-width: map.get($breakpoints, "mobile")) {
+    @media (min-width: map.get($breakpoints, "mobile") + 1px) {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -183,7 +183,7 @@ body {
     }
 
     /* Desktop view (>1200px) */
-    @media (min-width: map.get($breakpoints, "desktop")) {
+    @media (min-width: map.get($breakpoints, "desktop") + 1px) {
       .nav-links li a {
         font-size: 2.8rem;
       }
@@ -254,11 +254,20 @@ body {
       height: auto;
       aspect-ratio: 4 / 5;
       object-fit: cover;
+      object-position: top;
       border-radius: 5px;
     }
 
     .artist-name {
       text-align: center;
+    }
+
+    @media (max-width: map.get($breakpoints, "mobile")) {
+      flex-direction: column;
+      align-items: center;
+      .headshot {
+        order: 0 !important;
+      }
     }
   }
 }
