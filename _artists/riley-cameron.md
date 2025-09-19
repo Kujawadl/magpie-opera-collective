@@ -1,6 +1,6 @@
 ---
 name: Riley Cameron
-category: Riley Cameron
+category: Baritones
 headshot: assets/images/headshots/R-Cameron.jpg
 ---
 
