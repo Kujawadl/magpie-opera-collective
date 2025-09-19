@@ -15,3 +15,5 @@ A GitHub Pages site for an opera collective. Includes homepage, about, artist bi
 ## Collage Generator
 
 https://www.photocollage.com/
+
+Pick a 1.91:1 aspect ratio resolution, run through tinyjpg.com for compression.
