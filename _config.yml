@@ -13,3 +13,13 @@ artist_categories:
  - Tenors
  - Baritones
  - Accompanist
+socials:
+  - link: https://www.instagram.com/magpieoperacollective/
+    title: Instagram
+    icon: fa-brands fa-instagram
+  - link: https://www.youtube.com/channel/UCGuMQmoHRKFLEjaZL7BmKPg
+    title: YouTube
+    icon: fa-brands fa-youtube
+  - link: mailto:magpieoperacollective@gmail.com
+    title: Email Us
+    icon: fa-solid fa-envelope

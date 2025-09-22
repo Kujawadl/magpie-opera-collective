@@ -8,6 +8,21 @@
         <li><a href="events.html">Events</a></li>
       </ul>
     </nav>
-    <div>{% include support-button.html %}</div>
+    <nav>
+      <ul class="footer-links">
+        <li>
+          <a href="https://www.venmo.com/u/magpieoperacollective" target="_blank" class="icon-btn" title="Venmo">
+            {% include venmo.svg %}
+          </a>
+        </li>
+        {% for social in site.socials %}
+          <li>
+            <a href="{{ social.link }}" target="_blank" class="icon-btn" title="{{ social.title }}">
+              <i class="{{ social.icon }}"></i>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
   </div>
 </footer>

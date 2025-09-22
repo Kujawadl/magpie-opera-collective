@@ -11,6 +11,7 @@
 @use "./fontawesome/fontawesome";
 @use "./fontawesome/fa" as fa;
 @use "./fontawesome/solid" as fa-solid;
+@use "./fontawesome/brands" as fa-brands;
 
 $primaryColor: #59694f;
 $secondaryColor: #2a3723;
@@ -18,7 +19,7 @@ $fontFamily: Newsreader, serif;
 $logoFontFamily: "Clicker Script", cursive;
 $textLogoSize: 10vw;
 $headerPadding: 1rem;
-$footerHeight: 7rem;
+$footerHeight: 8rem;
 $headerHeight: calc($textLogoSize + $headerPadding * 2);
 $bodyVMargin: 1rem;
 $containerWidth: 800px;
@@ -32,6 +33,10 @@ $breakpoints: (
 html {
   height: 100%;
   box-sizing: border-box;
+  @supports (font: -apple-system-body) {
+    // Clicker-Script synthesizes its bold styles very oddly in Safari, so disabling synthesis makes things look a lot more professional at the expense of no bolding
+    font-synthesis: none !important;
+  }
 }
 
 body {
@@ -68,7 +73,8 @@ body {
 .site-header {
   background: url(../images/roses.png), $primaryColor;
   background-position: top;
-  background-size: cover;
+  background-size: 100% auto;
+  background-repeat: repeat-y;
   font-family: $logoFontFamily;
   position: absolute;
   top: 0;
@@ -211,8 +217,9 @@ body {
 
 .site-footer {
   background: url(../images/roses.png), $primaryColor;
-  background-size: cover;
+  background-size: 100% auto;
   background-position: bottom;
+  background-repeat: repeat-y;
   color: color.adjust($primaryColor, $lightness: 60%);
   text-align: center;
   padding: 1rem 0;
@@ -254,6 +261,13 @@ body {
       }
     }
   }
+
+  .footer-links {
+    @extend .footer-nav;
+    li:not(:last-child)::after {
+      content: unset;
+    }
+  }
 }
 
 .page-content {
@@ -289,24 +303,52 @@ body {
     margin-bottom: 2rem;
 
     display: flex;
-    &:nth-child(odd) {
+    align-items: flex-start;
+    &:nth-child(even of .artist-bio) {
       .headshot {
         order: 3;
       }
     }
     .headshot {
-      margin: 0 1rem;
-      max-width: 200px;
+      position: relative;
+      margin: 1.5rem 1rem 0 1rem;
+      max-width: 250px;
       width: 100%;
       height: auto;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      object-position: top;
-      border-radius: 5px;
+
+      img {
+        --margin: 12px;
+        display: block;
+        width: calc(100% - 2 * var(--margin));
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: top;
+        margin: var(--margin);
+      }
+
+      &::after {
+        content: " ";
+        display: block;
+        background-image: url(/assets/images/headshot-frame.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .bio-content {
+      flex: 1 0;
     }
 
     .artist-name {
       text-align: center;
+      margin: 0.5rem;
     }
 
     @media (max-width: map.get($breakpoints, "mobile")) {
@@ -316,6 +358,9 @@ body {
         order: 0 !important;
       }
     }
+  }
+  .divider:last-child {
+    display: none;
   }
 }
 
@@ -340,6 +385,15 @@ body {
 .font-serif {
   font-family: $fontFamily !important;
 }
+.divider {
+  background-image: url("/assets/images/divider.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  height: 1.5rem;
+  padding: 1rem 0;
+}
 .btn {
   display: inline-block;
   background-color: $secondaryColor;
@@ -359,5 +413,17 @@ body {
     vertical-align: middle;
     margin-right: 0.5rem;
     fill: white;
+  }
+}
+.icon-btn {
+  @extend .btn;
+  height: 1rem;
+  width: 1rem;
+  padding: 1rem;
+  border-radius: 3rem;
+  text-align: center;
+
+  i[class^="fa-"] {
+    margin-left: -0.125rem;
   }
 }

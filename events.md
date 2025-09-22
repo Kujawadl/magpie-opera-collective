@@ -34,7 +34,7 @@ permalink: events
 	<ul class="showings">
 		{% for showing in event.showings %}
 			<li>
-				<div class="bold">{{ showing.date | date: "%B, %-d %Y" }}</div>
+				<div class="bold">{{ showing.date | date: "%B %-d, %Y" }}</div>
 				{% if showing.doors_open %}<div><span class="bold">Doors Open:</span> {{ showing.doors_open }}</div>{% endif %}
 				{% if showing.show_time %}<div><span class="bold">Show Time:</span> {{ showing.show_time }}</div>{% endif %}
 			</li>

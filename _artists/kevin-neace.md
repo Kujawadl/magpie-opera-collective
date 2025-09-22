@@ -1,11 +1,10 @@
 ---
-name: Kevin Neace
+first_name: Kevin
+last_name: Neace
 category: Tenors
 headshot: assets/images/headshots/K-Neace.jpg
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Kevin Neace, tenor, is thrilled to perform with the Magpie Opera Collective. He holds a Bachelor of Music from Wheaton College and a Master of Music from the University of Memphis. Kevin made his professional debut in Union Avenue Opera's Aida and has previously performed in the University of Memphis productions of Don Giovanni, The Cousin From Nowhere, and Trouble In Tahiti, where he received praise for his navigation of operatic and jazz vocal stylings as well as his impeccable comedic timing.
+
+An Alton native, Kevin presently performs with the Bach Society of St. Louis, Continuum Vocal Ensemble and the Cathedral Basilica's Schola Cantorum and has previously performed with ensembles such as Rhodes Mastersingers and the Mendelssohn Choir of Pittsburgh.
