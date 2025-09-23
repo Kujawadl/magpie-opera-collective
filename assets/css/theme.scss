@@ -300,17 +300,29 @@ body {
 
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
+
+    // Alternate headshots on left and right side
     &:nth-child(even of .artist-bio) {
       .headshot {
         order: 3;
       }
     }
+
+    .artist-name {
+      display: block;
+      font-family: $logoFontFamily;
+      text-align: center;
+      margin: 0.5rem;
+      flex: 1 0 100%;
+    }
+
     .headshot {
       position: relative;
-      margin: 1.5rem 1rem 0 1rem;
+      margin: 1.5rem 1rem;
       max-width: 250px;
-      width: 100%;
       height: auto;
+      flex: 1 0 250px;
 
       img {
         --margin: 12px;
@@ -339,13 +351,7 @@ body {
     }
 
     .bio-content {
-      flex: 1 0;
-    }
-
-    .artist-name {
-      font-family: $logoFontFamily;
-      text-align: center;
-      margin: 0.5rem;
+      flex: 1 0 calc(100% - 300px);
     }
 
     @media (max-width: map.get($breakpoints, "mobile")) {
@@ -353,6 +359,12 @@ body {
       align-items: center;
       .headshot {
         order: 0 !important;
+      }
+      .artist-name {
+        order: 1 !important;
+      }
+      .bio-content {
+        order: 2 !important;
       }
     }
   }
