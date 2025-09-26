@@ -1,5 +1,5 @@
 ---
-first_name: Sun Hye
+first_name: Sunny
 last_name: Chung
 category: Accompanist
 headshot: assets/images/headshots/S-Chung.png

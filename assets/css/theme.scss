@@ -15,8 +15,6 @@
 
 $primaryColor: #59694f;
 $secondaryColor: #2a3723;
-$fontFamily: Newsreader, serif;
-$logoFontFamily: "Clicker Script", cursive;
 $textLogoSize: 10vw;
 $headerPadding: 1rem;
 $footerHeight: 8rem;
@@ -24,11 +22,27 @@ $headerHeight: calc($textLogoSize + $headerPadding * 2);
 $bodyVMargin: 1rem;
 $containerWidth: 800px;
 
+$textDark: color.adjust($primaryColor, $lightness: -10%, $saturation: -10%);
+$textLight: color.adjust($primaryColor, $lightness: 60%);
+$bgDark: $secondaryColor;
+$bgLight: color.adjust($primaryColor, $lightness: 55%);
+
 $breakpoints: (
   "mobile": 600px,
   "tablet": 1000px,
   "desktop": 1200px,
 );
+
+.newsreader {
+  font-family: "Newsreader", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.clicker-script {
+  font-family: "Clicker Script", cursive;
+  font-style: normal;
+}
 
 html {
   height: 100%;
@@ -40,9 +54,9 @@ html {
 }
 
 body {
-  font-family: $fontFamily;
-  background: color.adjust($primaryColor, $lightness: 55%);
-  color: $primaryColor;
+  @extend .newsreader;
+  background: $bgLight;
+  color: $textDark;
   margin: 0;
   margin-top: calc($textLogoSize);
 
@@ -71,11 +85,11 @@ body {
 }
 
 .site-header {
+  @extend .newsreader;
   background: url(../images/roses.png), $primaryColor;
   background-position: top;
   background-size: 100% auto;
   background-repeat: repeat-y;
-  font-family: $logoFontFamily;
   position: absolute;
   top: 0;
   left: 0;
@@ -84,13 +98,8 @@ body {
 
   a {
     text-decoration: none;
-    color: color.adjust($primaryColor, $lightness: 60%);
+    color: $textLight;
     transition: color 0.3s ease;
-
-    &:hover {
-      color: color.adjust($primaryColor, $lightness: 40%);
-      border-bottom: 2px solid color.adjust($primaryColor, $lightness: 40%);
-    }
   }
 
   .text-logo {
@@ -127,7 +136,7 @@ body {
 
   .site-nav {
     position: relative;
-    width: 100%;
+    margin: 0 2rem;
 
     input[type="checkbox"] {
       display: none;
@@ -141,7 +150,7 @@ body {
       right: 0;
       top: 5vw;
       transform: translateY(-50%);
-      color: color.adjust($primaryColor, $lightness: 60%);
+      color: $textLight;
     }
     input[type="checkbox"]:not(:checked) + .hamburger-label {
       @include fa-solid.icon(fa.$var-bars);
@@ -160,7 +169,12 @@ body {
         margin: 0 1rem;
 
         a {
-          font-size: 2.2rem;
+          font-size: 1.8rem;
+
+          &:hover,
+          &.active {
+            border-bottom: 2px solid $textLight;
+          }
         }
       }
     }
@@ -211,7 +225,7 @@ body {
     /* Desktop view (>1200px) */
     @media (min-width: map.get($breakpoints, "desktop") + 1px) {
       .nav-links li a {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
       }
     }
   }
@@ -222,7 +236,7 @@ body {
   background-size: 100% auto;
   background-position: bottom;
   background-repeat: repeat-y;
-  color: color.adjust($primaryColor, $lightness: 60%);
+  color: $textLight;
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
@@ -230,10 +244,9 @@ body {
   height: $footerHeight;
 
   a {
-    color: color.adjust($primaryColor, $lightness: 60%);
-
+    color: $textLight;
     &:hover {
-      color: color.adjust($primaryColor, $lightness: 40%);
+      color: $textLight;
     }
   }
 
@@ -256,7 +269,7 @@ body {
 
         &::after {
           content: "|";
-          color: color.adjust($primaryColor, $lightness: 60%);
+          color: $textLight;
           margin-left: 1em;
           font-weight: bold;
         }
@@ -277,7 +290,7 @@ body {
   margin: $bodyVMargin auto;
 
   h1 {
-    font-family: $logoFontFamily;
+    @extend .clicker-script;
   }
 
   .post-title {
@@ -291,7 +304,8 @@ body {
     margin-top: 4rem;
   }
   .category-name {
-    border-bottom: 3px solid $primaryColor;
+    @extend .clicker-script;
+    border-bottom: 3px solid $textDark;
     line-height: 3rem;
   }
 
@@ -311,8 +325,8 @@ body {
     }
 
     .artist-name {
+      @extend .newsreader;
       display: block;
-      font-family: $logoFontFamily;
       text-align: center;
       margin: 0.5rem;
       flex: 1 0 100%;
@@ -377,7 +391,7 @@ body {
 .event {
   margin-bottom: 1rem;
   &:not(:last-of-type) {
-    border-bottom: 1px solid $primaryColor;
+    border-bottom: 1px solid $textDark;
   }
 
   .tickets-btn {
@@ -391,9 +405,6 @@ body {
 }
 .center {
   text-align: center;
-}
-.font-serif {
-  font-family: $fontFamily !important;
 }
 .divider {
   background-image: url("/assets/images/divider.png");
