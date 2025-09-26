@@ -1,6 +1,6 @@
 <header class="site-header">
   <nav class="site-nav">
-    <a href="index.html" class="text-logo">
+    <a href="/index.html" class="text-logo">
       <span class="mobile">
         {% include logo.svg %}
         <span>{{ site.title }}</span>
@@ -11,9 +11,9 @@
     <label for="menu" class="hamburger-label" tabindex="0"></label>
     {% assign url = page.url | replace: ".html", "" | split:'/' | last %}
     <ul class="nav-links">
-      <li><a href="about.html" {% if url == "about" %}class="active"{% endif %}>About</a></li>
-      <li><a href="artists.html" {% if url == "artists" %}class="active"{% endif %}>Artists</a></li>
-      <li><a href="events.html" {% if url == "events" %}class="active"{% endif %}>Events</a></li>
+      <li><a href="/about.html" {% if url == "about" %}class="active"{% endif %}>About</a></li>
+      <li><a href="/artists.html" {% if url == "artists" %}class="active"{% endif %}>Artists</a></li>
+      <li><a href="/events.html" {% if url == "events" %}class="active"{% endif %}>Events</a></li>
     </ul>
   </nav>
 </header>

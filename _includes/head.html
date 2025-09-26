@@ -8,20 +8,18 @@
     href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="assets/css/theme.css" />
-  <link rel="icon" href="assets/images/favicon.ico" />
-
-  <base href="{{ site.baseurl }}/" />
+  <link rel="stylesheet" href="/assets/css/theme.css" />
+  <link rel="icon" href="/assets/images/favicon.ico" />
 
   <meta property="og:title" content="{{ page.title | default: 'Magpie Opera Collective' }}" />
   <meta
     property="og:description"
-    content="Artist-run opera collective in St. Louis, MO, highlighting emerging talent."
+    content="{{ page.description | default: 'Artist-run opera collective in St. Louis, MO, highlighting emerging talent.' }}"
   />
   <meta property="og:type" content="website" />
   <meta
     property="og:image"
-    content="{{ site.url }}/{{ site.base_url }}{{ page.image | default: 'assets/images/text-logo.png' }}"
+    content="{{ site.url }}/{{ site.base_url }}{{ page.image | default: '/assets/images/text-logo.png' }}"
   />
   {% if page.permalink %}
   <meta property="og:url" content="{{ site.url }}/{{ site.base_url }}{{ page.permalink }}" />

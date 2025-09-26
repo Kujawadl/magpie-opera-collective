@@ -389,13 +389,35 @@ body {
 }
 
 .event {
-  margin-bottom: 1rem;
-  &:not(:last-of-type) {
-    border-bottom: 1px solid $textDark;
-  }
-
   .tickets-btn {
     margin-bottom: 1rem;
+  }
+}
+
+.event-excerpt {
+  margin-bottom: 1rem;
+  &:last-of-type .divider {
+    display: none !important;
+  }
+
+  .event-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+    a {
+      @extend .newsreader;
+      display: inline-block;
+      color: $textDark;
+      font-weight: 500;
+      line-height: 0.8;
+      &:hover {
+        color: color.adjust($textDark, $lightness: -20%);
+      }
+    }
+    span {
+      font-size: 1.2rem;
+    }
   }
 }
 
@@ -447,4 +469,7 @@ body {
   i[class^="fa-"] {
     margin-left: -0.125rem;
   }
+}
+.hidden {
+  display: none !important;
 }

@@ -1,12 +1,13 @@
 title: Magpie Opera Collective
 url: "https://magpieopera.org"
-baseurl: ""
 theme: minima
+future: true
 collections:
   artists:
     output: true
   events:
     output: true
+    permalink: /:collection/:name
 artist_categories:
  - Soprani
  - Mezzo-Soprani
