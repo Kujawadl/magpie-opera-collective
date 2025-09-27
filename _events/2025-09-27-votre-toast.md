@@ -28,8 +28,8 @@ date: 2025-09-27 20:00
 <ul class="showings">
     <li>
       <div class="bold">September 27, 2025</div>
-      <div><span class="bold">Doors Open:</span>7:00 PM</div>
-      <div><span class="bold">Show Time:</span>8:00 PM</div>
+      <div><span class="bold">Doors Open:</span> 7:00 PM</div>
+      <div><span class="bold">Show Time:</span> 8:00 PM</div>
     </li>
 </ul>
 
