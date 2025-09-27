@@ -1,5 +1,6 @@
 ---
-layout: home
+# TODO: Custom home layout
+layout: page
 title: Welcome to Magpie Opera Collective
 ---
 

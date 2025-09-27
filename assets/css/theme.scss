@@ -19,7 +19,7 @@ $textLogoSize: 10vw;
 $headerPadding: 1rem;
 $footerHeight: 8rem;
 $headerHeight: calc($textLogoSize + $headerPadding * 2);
-$bodyVMargin: 1rem;
+$bodyVMargin: 3rem;
 $containerWidth: 800px;
 
 $textDark: color.adjust($primaryColor, $lightness: -10%, $saturation: -10%);
