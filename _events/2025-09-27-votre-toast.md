@@ -4,6 +4,7 @@ excerpt_separator: <!--more-->
 
 title: Votre Toast
 description: An Evening of Opera Music and Merriment
+date: 2025-09-27 20:00
 ---
 
 <h3 class="description">{{ page.description }}</h3>

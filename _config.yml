@@ -2,6 +2,7 @@ title: Magpie Opera Collective
 url: "https://magpieopera.org"
 theme: minima
 future: true
+timezone: US/Central
 collections:
   artists:
     output: true
