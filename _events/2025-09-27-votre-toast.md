@@ -9,7 +9,7 @@ date: 2025-09-27 20:00
 
 <h3 class="description">{{ page.description }}</h3>
 
-<a href="https://greenfinchstl.com/tickets" target="_blank" class="btn tickets-btn">
+<a href="https://greenfinchstl.com/tickets" target="_blank" class="btn tickets-btn" data-date="{{ page.date }}">
   Get Tickets
   <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
 </a>
