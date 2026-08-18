@@ -28,7 +28,10 @@ function archivePastEvents() {
 
   if (pastEvents.length) {
     // Delete all but the first three past events
-    pastEvents.splice(3).forEach((e) => e.remove());
+    pastEvents
+      .reverse()
+      .splice(3)
+      .forEach((e) => e.remove());
 
     // Move past events to the past events div
     pastEvents.forEach((e) => {

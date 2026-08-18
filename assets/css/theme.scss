@@ -33,6 +33,26 @@ $breakpoints: (
   "desktop": 1200px,
 );
 
+@mixin up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint) + 1px) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`.";
+  }
+}
+
+@mixin down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`.";
+  }
+}
+
 .newsreader {
   font-family: "Newsreader", serif;
   font-optical-sizing: auto;
@@ -79,9 +99,10 @@ body {
 }
 
 .container {
+  width: calc(100% - 4rem);
   max-width: $containerWidth;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .site-header {
@@ -106,13 +127,13 @@ body {
     fill: $primaryColor;
     display: block;
 
-    @media (min-width: map.get($breakpoints, "mobile") + 1px) {
+    @include up("mobile") {
       text-align: left;
       .mobile {
         display: none;
       }
     }
-    @media (max-width: map.get($breakpoints, "mobile")) {
+    @include down("mobile") {
       .full {
         display: none;
       }
@@ -180,7 +201,7 @@ body {
     }
 
     /* Mobile view (<1000px) */
-    @media (max-width: map.get($breakpoints, "mobile")) {
+    @include down("mobile") {
       .hamburger-label {
         // Make label bounding box wider and taller so users don't fat-finger press the home link
         display: flex !important;
@@ -196,7 +217,9 @@ body {
         text-align: center;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.4s ease-out, visibility 0.4s ease-out;
+        transition:
+          max-height 0.4s ease-out,
+          visibility 0.4s ease-out;
 
         li {
           display: block;
@@ -207,12 +230,14 @@ body {
       input[type="checkbox"]:checked + .hamburger-label + .nav-links {
         visibility: visible;
         max-height: 50vh;
-        transition: max-height 0.4s ease-in, visibility 0.4s ease-in;
+        transition:
+          max-height 0.4s ease-in,
+          visibility 0.4s ease-in;
       }
     }
 
     /* Tablet view (>1000px) */
-    @media (min-width: map.get($breakpoints, "mobile") + 1px) {
+    @include up("mobile") {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -223,7 +248,7 @@ body {
     }
 
     /* Desktop view (>1200px) */
-    @media (min-width: map.get($breakpoints, "desktop") + 1px) {
+    @include up("desktop") {
       .nav-links li a {
         font-size: 2.2rem;
       }
@@ -369,7 +394,7 @@ body {
       flex: 1 0 calc(100% - 300px);
     }
 
-    @media (max-width: map.get($breakpoints, "mobile")) {
+    @include down("mobile") {
       flex-direction: column;
       align-items: center;
       .headshot {
@@ -389,8 +414,47 @@ body {
 }
 
 .event {
-  .tickets-btn {
-    margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .event-title {
+    margin-block-end: 0;
+  }
+
+  .event-details {
+    a:not(.btn) {
+      color: $textDark;
+    }
+
+    .description {
+      text-align: center;
+      margin-block-start: 0;
+    }
+
+    .tickets-btn {
+      margin-bottom: 1rem;
+    }
+
+    ul.showings {
+      list-style-type: none;
+      li {
+        & > .showing-date {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+        &:not(:last-child) {
+          margin-bottom: 1.5rem;
+        }
+        a:not(.btn) {
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -400,6 +464,25 @@ body {
     display: none !important;
   }
 
+  @include down("tablet") {
+    .event-title a {
+      font-size: 2.5rem;
+    }
+  }
+  @include down("mobile") {
+    .event-title {
+      flex-direction: column;
+      a {
+        font-size: 2rem;
+        margin-top: 1.5rem;
+        order: 1;
+      }
+    }
+    .description {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
   .event-title {
     display: flex;
     justify-content: space-between;
@@ -415,9 +498,27 @@ body {
         color: color.adjust($textDark, $lightness: -20%);
       }
     }
-    span {
-      font-size: 1.2rem;
+    .event-dates {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 1.2rem;
+      }
     }
+  }
+}
+
+#past {
+  h1 {
+    margin-block-end: 0;
+  }
+  .event-title {
+    margin-block-start: 0;
+  }
+  .event-excerpt {
+    opacity: 0.8;
+    transform: scale(0.8);
+    margin-bottom: 0;
   }
 }
 
@@ -456,6 +557,11 @@ body {
     vertical-align: middle;
     margin-right: 0.5rem;
     fill: white;
+  }
+
+  &-disabled {
+    pointer-events: none;
+    opacity: 0.8;
   }
 }
 .icon-btn {
