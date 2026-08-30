@@ -1,4 +1,6 @@
 ---
+slug: spencer-domer
+active: true
 first_name: Spencer
 last_name: Domer
 category: Tenors

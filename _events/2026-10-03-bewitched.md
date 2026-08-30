@@ -7,6 +7,19 @@ description: An Evening of Opera and the Occult
 dates:
   - 2026-10-03 19:30
   - 2026-10-04 14:00
+theme:
+  title_font: The maria story
+  title_font_stylesheet: /assets/events/bewitched/font/stylesheet.css
+  title_font_size: 8rem
+  title_font_weight: normal
+  primary_color: '#92470d'
+  secondary_color: '#40230c'
+  text_dark_lightness: -50
+  text_light_lightness: 90
+  background_lightness: 85
+  header_image: /assets/events/bewitched/images/stripes.png
+  footer_image: /assets/events/bewitched/images/stripes.png
+  headshot_frame: /assets/events/bewitched/images/stripes.png
 ---
 
 <h3 class="description">{{ page.description }}</h3>

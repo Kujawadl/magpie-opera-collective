@@ -1,4 +1,6 @@
 ---
+slug: sunny-chung
+active: true
 first_name: Sunny
 last_name: Chung
 category: Accompanist

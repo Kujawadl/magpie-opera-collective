@@ -1,4 +1,6 @@
 ---
+slug: will-kinsella
+active: true
 first_name: Will
 last_name: Kinsella
 category: Tenors

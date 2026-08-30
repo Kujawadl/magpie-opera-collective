@@ -27,6 +27,27 @@ $textLight: color.adjust($primaryColor, $lightness: 60%);
 $bgDark: $secondaryColor;
 $bgLight: color.adjust($primaryColor, $lightness: 55%);
 
+// Runtime-overridable design tokens. Defaults below are computed from the
+// Sass variables above via the same functions the site always used, so this
+// refactor changes nothing visually on its own. An event page can later
+// override any of these via an inline <style> block driven by that event's
+// `theme:` front matter (see _includes/event-theme.html) -- anything it
+// doesn't override just inherits the site default here.
+:root {
+  --color-primary: #{$primaryColor};
+  --color-secondary: #{$secondaryColor};
+  --color-text-dark: #{$textDark};
+  --color-text-light: #{$textLight};
+  --color-bg-dark: #{$bgDark};
+  --color-bg-light: #{$bgLight};
+
+  --header-bg-image: url(/assets/images/roses.png);
+  --footer-bg-image: url(/assets/images/roses.png);
+  --headshot-frame-image: url(/assets/images/headshot-frame.png);
+  --divider-image: url(/assets/images/divider.png);
+}
+
+
 $breakpoints: (
   "mobile": 600px,
   "tablet": 1000px,
@@ -75,8 +96,8 @@ html {
 
 body {
   @extend .newsreader;
-  background: $bgLight;
-  color: $textDark;
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
   margin: 0;
   margin-top: calc($textLogoSize);
 
@@ -107,7 +128,7 @@ body {
 
 .site-header {
   @extend .newsreader;
-  background: url(../images/roses.png), $primaryColor;
+  background: var(--header-bg-image), var(--color-primary);
   background-position: top;
   background-size: 100% auto;
   background-repeat: repeat-y;
@@ -119,12 +140,12 @@ body {
 
   a {
     text-decoration: none;
-    color: $textLight;
+    color: var(--color-text-light);
     transition: color 0.3s ease;
   }
 
   .text-logo {
-    fill: $primaryColor;
+    fill: var(--color-primary);
     display: block;
 
     @include up("mobile") {
@@ -171,7 +192,7 @@ body {
       right: 0;
       top: 5vw;
       transform: translateY(-50%);
-      color: $textLight;
+      color: var(--color-text-light);
     }
     input[type="checkbox"]:not(:checked) + .hamburger-label {
       @include fa-solid.icon(fa.$var-bars);
@@ -194,7 +215,7 @@ body {
 
           &:hover,
           &.active {
-            border-bottom: 2px solid $textLight;
+            border-bottom: 2px solid var(--color-text-light);
           }
         }
       }
@@ -257,11 +278,11 @@ body {
 }
 
 .site-footer {
-  background: url(../images/roses.png), $primaryColor;
+  background: var(--footer-bg-image), var(--color-primary);
   background-size: 100% auto;
   background-position: bottom;
   background-repeat: repeat-y;
-  color: $textLight;
+  color: var(--color-text-light);
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
@@ -269,9 +290,9 @@ body {
   height: $footerHeight;
 
   a {
-    color: $textLight;
+    color: var(--color-text-light);
     &:hover {
-      color: $textLight;
+      color: var(--color-text-light);
     }
   }
 
@@ -294,7 +315,7 @@ body {
 
         &::after {
           content: "|";
-          color: $textLight;
+          color: var(--color-text-light);
           margin-left: 1em;
           font-weight: bold;
         }
@@ -330,7 +351,7 @@ body {
   }
   .category-name {
     @extend .clicker-script;
-    border-bottom: 3px solid $textDark;
+    border-bottom: 3px solid var(--color-text-dark);
     line-height: 3rem;
   }
 
@@ -349,12 +370,34 @@ body {
       }
     }
 
-    .artist-name {
-      @extend .newsreader;
-      display: block;
+    .artist-heading {
       text-align: center;
       margin: 0.5rem;
       flex: 1 0 100%;
+    }
+
+    .artist-name {
+      @extend .newsreader;
+      display: block;
+      margin: 0;
+    }
+
+    // Event-specific role name (e.g. "Gretel") shown under the artist's name
+    // on an event's cast list. Not used on the main Artists page.
+    .artist-role {
+      @extend .newsreader;
+      display: block;
+      margin: 0.25rem 0 0;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    // Optional short header text under the role, e.g. "Also performing in the chorus"
+    .artist-note {
+      margin: 0.25rem 0 0;
+      font-size: 1rem;
+      opacity: 0.85;
     }
 
     .headshot {
@@ -378,7 +421,9 @@ body {
       &::after {
         content: " ";
         display: block;
-        background-image: url(/assets/images/headshot-frame.png);
+        // Overridable per-event so a cast photo frame can match that event's flyer;
+        // falls back to the collective's standard gold frame.
+        background-image: var(--headshot-frame-image);
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -392,6 +437,17 @@ body {
 
     .bio-content {
       flex: 1 0 calc(100% - 300px);
+
+      // "Read full bio" toggle used on event cast lists (collapse_bio=true in artist-bio.html).
+      // Not used on the main Artists page, where the bio always renders inline.
+      .bio-details summary {
+        cursor: pointer;
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     @include down("mobile") {
@@ -400,7 +456,7 @@ body {
       .headshot {
         order: 0 !important;
       }
-      .artist-name {
+      .artist-heading {
         order: 1 !important;
       }
       .bio-content {
@@ -417,14 +473,53 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 
-  .event-title {
-    margin-block-end: 0;
+  .event-card {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem clamp(1.25rem, 5vw, 3rem) 2rem;
+
+    @include down("mobile") {
+      padding: 1rem 1.25rem 1.5rem;
+    }
+  }
+
+  .event-header {
+    text-align: center;
+    margin-bottom: 1rem;
+
+    .event-presents {
+      @extend .newsreader;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      font-style: italic;
+      opacity: 0.85;
+    }
+
+    .event-title {
+      margin-block: 0;
+      // Each falls back to the site's usual title styling when an event doesn't
+      // set the matching `theme.title_*` field (see _includes/event-theme.html).
+      font-family: var(--title-font-family, "Clicker Script", cursive);
+      font-weight: var(--title-font-weight, bold);
+
+      // --title-font-size is a *base* size: mobile doesn't get its own fixed
+      // override, it's always a proportion of whatever the base resolves to
+      // (site default or an event's theme override), so themed events scale
+      // down sensibly on small screens without a separate mobile field.
+      $title-font-size-base: var(--title-font-size, 3.5rem);
+      font-size: $title-font-size-base;
+
+      @include down("mobile") {
+        font-size: calc(#{$title-font-size-base} * 0.6);
+      }
+    }
   }
 
   .event-details {
     a:not(.btn) {
-      color: $textDark;
+      color: var(--color-text-dark);
     }
 
     .description {
@@ -436,24 +531,68 @@ body {
       margin-bottom: 1rem;
     }
 
+    .location {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    // Standalone section headings ("Showings:", "Pricing:", "Notes:") -- distinguished
+    // from the inline `<span class="bold">Label:</span>` prefixes used elsewhere (e.g.
+    // "Doors Open:", "Run Time:"), which keep their default inline treatment.
+    div.bold {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
     ul.showings {
       list-style-type: none;
-      li {
-        & > .showing-date {
-          font-size: 1.2rem;
-          font-weight: bold;
-        }
-        &:not(:last-child) {
-          margin-bottom: 1.5rem;
-        }
-        a:not(.btn) {
-          text-decoration: none;
+      text-align: center;
+      margin: 0 0 1.5rem;
+      padding: 0;
 
-          &:hover {
-            text-decoration: underline;
-          }
+      // Two columns on desktop (one per showing), stacking to one column
+      // as the card narrows -- e.g. on mobile, via the `mobile` breakpoint.
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+
+      li > .showing-date {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      a:not(.btn) {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
         }
       }
+    }
+
+    ul:not(.showings) {
+      text-align: center;
+      list-style-type: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+    }
+
+    .runtime {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  // Reserved for the event cast list (see _layouts/event-details.html) -- empty and
+  // inert until an event has a `cast:` front-matter block.
+  .event-cast {
+    width: 100%;
+    margin-top: 3rem;
+
+    .section-heading {
+      @extend .clicker-script;
+      text-align: center;
     }
   }
 }
@@ -491,11 +630,11 @@ body {
     a {
       @extend .newsreader;
       display: inline-block;
-      color: $textDark;
+      color: var(--color-text-dark);
       font-weight: 500;
       line-height: 0.8;
       &:hover {
-        color: color.adjust($textDark, $lightness: -20%);
+        color: color-mix(in srgb, var(--color-text-dark) 80%, black 20%);
       }
     }
     .event-dates {
@@ -530,7 +669,7 @@ body {
   text-align: center;
 }
 .divider {
-  background-image: url("/assets/images/divider.png");
+  background-image: var(--divider-image);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -540,7 +679,7 @@ body {
 }
 .btn {
   display: inline-block;
-  background-color: $secondaryColor;
+  background-color: var(--color-secondary);
   color: white;
   padding: 0.5rem 1rem;
   text-decoration: none;
@@ -548,7 +687,7 @@ body {
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: color.adjust($secondaryColor, $lightness: -10%);
+    background-color: color-mix(in srgb, var(--color-secondary) 90%, black 10%);
   }
 
   svg {

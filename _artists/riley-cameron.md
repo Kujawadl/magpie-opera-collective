@@ -1,4 +1,6 @@
 ---
+slug: riley-cameron
+active: true
 first_name: Riley
 last_name: Cameron
 category: Baritones

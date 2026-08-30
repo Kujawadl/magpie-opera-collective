@@ -1,4 +1,6 @@
 ---
+slug: joel-rogier
+active: true
 first_name: Joel
 last_name: Rogier
 category: Baritones

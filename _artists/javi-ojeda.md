@@ -1,4 +1,6 @@
 ---
+slug: javi-ojeda
+active: true
 first_name: Javi
 last_name: Ojeda
 category: Baritones

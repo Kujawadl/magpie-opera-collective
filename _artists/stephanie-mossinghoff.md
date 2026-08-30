@@ -1,4 +1,6 @@
 ---
+slug: stephanie-mossinghoff
+active: true
 first_name: Stephanie
 last_name: Mossinghoff
 category: Mezzo-Soprani

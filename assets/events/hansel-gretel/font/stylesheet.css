@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'TAN Astoria';
+    src: local('The mariam rough'), local('Themariamrough'),
+        url('TAN-ASTORIA-Display.otf') format('opentype'),
+        url('TAN-ASTORIA-Display.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

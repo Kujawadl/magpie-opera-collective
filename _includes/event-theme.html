@@ -1,0 +1,140 @@
+{%- comment -%}
+  Emits an inline <style> block overriding the site's design-token CSS custom
+  properties (defined in assets/css/theme.scss :root) for a single event page.
+
+  Usage (in a layout, typically inside <head>):
+    {% include event-theme.html theme=page.theme %}
+
+  `theme` is an event's optional front-matter block, e.g.:
+    theme:
+      primary_color: "#8a4a1f"
+      secondary_color: "#3b2412"
+      text_dark_lightness: -10   # optional; default below matches the site-wide look
+      text_light_lightness: 60  # optional; default below matches the site-wide look
+      background_lightness: 65  # optional; default below matches the site-wide look
+      header_image: /assets/events/bewitched/images/header.png
+      footer_image: /assets/events/bewitched/images/footer.png
+      headshot_frame: /assets/events/bewitched/images/frame.png
+      divider_image: /assets/events/bewitched/images/divider.png
+      title_font: "Pirata One"                                     # Google Font family name, OR:
+      title_font: "Wicked Witch"                                    # family name a font kit's stylesheet registers
+      title_font_stylesheet: /assets/events/bewitched/fonts/title.css # ...paired with that stylesheet's URL
+      title_font_size: 4.5rem     # optional; defaults to 3.5rem, the site's usual h1 size
+      title_font_weight: 800      # optional; defaults to bold (the browser's usual h1 weight)
+
+  Asset paths follow an `/assets/events/<event-slug>/<kind>/<file>` layout -- an
+  `images/` folder and a `fonts/` folder per event, so all of one event's overrides
+  live together (e.g. /assets/events/bewitched/images/header.png,
+  /assets/events/bewitched/fonts/title.css). Not enforced by this include -- any
+  path works -- just the convention the site uses.
+
+  Every field is optional. Anything not set here simply inherits the site's
+  default look from :root -- an event with no `theme:` block at all renders
+  identically to before this include existed.
+
+  text_dark_lightness / text_light_lightness / background_lightness each control
+  how far their token is mixed from primary_color toward white or black -- a plain
+  number (no "%"), positive to lighten (mix in white) or negative to darken (mix in
+  black). They default to -10 / 60 / 55 respectively, the same deltas the site
+  always used to derive these three colors from its primary color, so setting only
+  primary_color (and none of these) reproduces the site's usual look with the new
+  primary. Each is computed against var(--color-primary) -- the event's overridden
+  primary_color if set, otherwise the site default -- so a lightness field can also
+  be used on its own, without overriding primary_color at all, e.g. to nudge just
+  the background lighter or darker.
+
+  This is an approximation of the Sass color.adjust() lightness math the site used
+  to compute these at build time (color-mix() blends in sRGB rather than adjusting
+  HSL lightness/saturation directly) -- close enough for an event accent palette.
+
+  title_font is always the CSS font-family name applied to the event title. On its
+  own, it's loaded from Google Fonts (see _includes/head.html). Pair it with
+  title_font_stylesheet to load it from somewhere else instead -- head.html just
+  links that stylesheet rather than hitting Google Fonts, and the stylesheet itself
+  is responsible for the @font-face that registers title_font (a self-hosted font
+  kit's own CSS file typically already does this correctly -- multiple weights,
+  unicode-range, font-display and all -- so we don't try to reconstruct it).
+
+  title_font_size / title_font_weight are plain CSS values (e.g. "4.5rem", 800,
+  "bold") passed straight through to --title-font-size / --title-font-weight, no
+  computation. Independent of title_font -- useful on their own to resize/rebold
+  the title without swapping the typeface, e.g. a display font that needs to run
+  larger or lighter than the site default to read well.
+
+  title_font_size is treated as a *base* size, not a fixed value: theme.scss
+  derives the mobile title size from it with calc(), scaled down proportionally
+  (currently 0.6x), rather than applying a separate fixed mobile override. So a
+  larger title_font_size makes the title larger on mobile too, in proportion --
+  there's no separate mobile field to keep in sync.
+
+  IMPORTANT: title_font must exactly match the font-family name the stylesheet (or
+  Google Fonts) actually registers -- e.g. if title_font_stylesheet's @font-face
+  says `font-family: 'The mariam rough';`, title_font must be `The mariam rough`,
+  not the file/kit's product name or a sibling event's font name. A mismatch fails
+  silently: no error, the title just renders in the fallback font below. We also
+  append ", "Clicker Script", cursive" after title_font here specifically so a
+  mismatched or failed-to-load font still degrades to the site's usual look
+  instead of an unstyled system font.
+{%- endcomment -%}
+{%- if include.theme -%}
+<style>
+  :root {
+    {%- if include.theme.primary_color %}
+    --color-primary: {{ include.theme.primary_color }};
+    {%- endif %}
+    {%- if include.theme.secondary_color %}
+    --color-secondary: {{ include.theme.secondary_color }};
+    --color-bg-dark: {{ include.theme.secondary_color }};
+    {%- endif %}
+
+    {%- if include.theme.primary_color or include.theme.text_dark_lightness %}
+      {%- assign text_dark_delta = include.theme.text_dark_lightness | default: -10 %}
+      {%- if text_dark_delta < 0 %}
+    --color-text-dark: color-mix(in srgb, black {{ text_dark_delta | abs }}%, var(--color-primary));
+      {%- else %}
+    --color-text-dark: color-mix(in srgb, white {{ text_dark_delta }}%, var(--color-primary));
+      {%- endif %}
+    {%- endif %}
+
+    {%- if include.theme.primary_color or include.theme.text_light_lightness %}
+      {%- assign text_light_delta = include.theme.text_light_lightness | default: 60 %}
+      {%- if text_light_delta < 0 %}
+    --color-text-light: color-mix(in srgb, black {{ text_light_delta | abs }}%, var(--color-primary));
+      {%- else %}
+    --color-text-light: color-mix(in srgb, white {{ text_light_delta }}%, var(--color-primary));
+      {%- endif %}
+    {%- endif %}
+
+    {%- if include.theme.primary_color or include.theme.background_lightness %}
+      {%- assign bg_light_delta = include.theme.background_lightness | default: 55 %}
+      {%- if bg_light_delta < 0 %}
+    --color-bg-light: color-mix(in srgb, black {{ bg_light_delta | abs }}%, var(--color-primary));
+      {%- else %}
+    --color-bg-light: color-mix(in srgb, white {{ bg_light_delta }}%, var(--color-primary));
+      {%- endif %}
+    {%- endif %}
+
+    {%- if include.theme.header_image %}
+    --header-bg-image: url({{ include.theme.header_image }});
+    {%- endif %}
+    {%- if include.theme.footer_image %}
+    --footer-bg-image: url({{ include.theme.footer_image }});
+    {%- endif %}
+    {%- if include.theme.headshot_frame %}
+    --headshot-frame-image: url({{ include.theme.headshot_frame }});
+    {%- endif %}
+    {%- if include.theme.divider_image %}
+    --divider-image: url({{ include.theme.divider_image }});
+    {%- endif %}
+    {%- if include.theme.title_font %}
+    --title-font-family: "{{ include.theme.title_font }}", "Clicker Script", cursive;
+    {%- endif %}
+    {%- if include.theme.title_font_size %}
+    --title-font-size: {{ include.theme.title_font_size }};
+    {%- endif %}
+    {%- if include.theme.title_font_weight %}
+    --title-font-weight: {{ include.theme.title_font_weight }};
+    {%- endif %}
+  }
+</style>
+{%- endif -%}

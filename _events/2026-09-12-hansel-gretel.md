@@ -7,6 +7,19 @@ description: by Engelbert Humperdinck
 dates:
   - 2026-09-12 19:30
   - 2026-09-13 15:00
+theme:
+  title_font: TAN Astoria
+  title_font_stylesheet: /assets/events/hansel-gretel/font/stylesheet.css
+  title_font_size: 4rem
+  primary_color: '#52641d'
+  secondary_color: '#364215'
+  text_dark_lightness: -50
+  text_light_lightness: 90
+  background_lightness: 85
+  header_image: /assets/events/hansel-gretel/images/spiderweb.png
+  footer_image: /assets/events/hansel-gretel/images/spiderweb.png
+  headshot_frame: /assets/events/hansel-gretel/images/spiderweb.png
+  divider_image: /assets/events/hansel-gretel/images/divider.png
 ---
 
 <h3 class="description">{{ page.description }}</h3>

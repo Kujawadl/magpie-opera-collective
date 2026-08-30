@@ -1,4 +1,6 @@
 ---
+slug: erica-ancell
+active: true
 first_name: Erica
 last_name: Ancell
 category: Soprani

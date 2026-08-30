@@ -1,4 +1,6 @@
 ---
+slug: kelly-beekman
+active: true
 first_name: Kelly
 last_name: Beekman
 category: Mezzo-Soprani

@@ -1,4 +1,6 @@
 ---
+slug: calista-goldwasser
+active: true
 first_name: Calista
 last_name: Goldwasser
 category: Mezzo-Soprani

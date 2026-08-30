@@ -1,4 +1,6 @@
 ---
+slug: margaret-beekman
+active: true
 first_name: Margaret
 last_name: Beekman
 category: Soprani

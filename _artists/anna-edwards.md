@@ -1,4 +1,6 @@
 ---
+slug: anna-edwards
+active: true
 first_name: Anna 
 last_name: Edwards
 category: Soprani

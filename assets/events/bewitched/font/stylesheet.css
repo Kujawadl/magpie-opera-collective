@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "The maria story";
+  src: url("Themariastory.eot");
+  src:
+    local("The maria story"),
+    local("Themariastory"),
+    url("Themariastory.eot?#iefix") format("embedded-opentype"),
+    url("Themariastory.woff2") format("woff2"),
+    url("Themariastory.woff") format("woff"),
+    url("Themariastory.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,4 +1,6 @@
 ---
+slug: rita-schien
+active: true
 first_name: Rita
 last_name: Schien
 category: Soprani

@@ -8,8 +8,23 @@
     href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
     rel="stylesheet"
   />
+  {% if page.theme.title_font_stylesheet %}
+    {%- comment -%} A stylesheet ref (e.g. a self-hosted font kit's own CSS file, or
+      even a hand-picked Google Fonts CSS2 URL) that defines the @font-face for
+      title_font itself -- we just link it, rather than building the @font-face
+      ourselves. Takes priority over title_font on its own, which falls back to
+      the standard Google Fonts URL below. {%- endcomment -%}
+    <link rel="stylesheet" href="{{ page.theme.title_font_stylesheet }}" />
+  {% elsif page.theme.title_font %}
+    <link
+      href="https://fonts.googleapis.com/css2?family={{ page.theme.title_font | url_encode }}&display=swap"
+      rel="stylesheet"
+    />
+  {% endif %}
   <link rel="stylesheet" href="/assets/css/theme.css" />
   <link rel="icon" href="/assets/images/favicon.ico" />
+
+  {% include event-theme.html theme=page.theme %}
 
   <meta property="og:title" content="{{ page.title | default: 'Magpie Opera Collective' }}" />
   <meta

@@ -1,4 +1,6 @@
 ---
+slug: kevin-neace
+active: true
 first_name: Kevin
 last_name: Neace
 category: Tenors

@@ -1,4 +1,6 @@
 ---
+slug: jessica-barnes
+active: true
 first_name: Jessica
 last_name: Barnes
 category: Soprani

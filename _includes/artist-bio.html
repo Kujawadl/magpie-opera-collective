@@ -1,0 +1,43 @@
+{%- comment -%}
+  Renders a single artist's bio card.
+
+  Usage:
+    {% include artist-bio.html artist=artist %}
+    {% include artist-bio.html artist=artist role="Gretel" note="Also performing in the chorus" collapse_bio=true %}
+
+  Params:
+    artist       - required. An entry from the `artists` collection.
+    role         - optional. Event-specific role/part name (e.g. "Gretel").
+    note         - optional. Short header text under the role (e.g. "Also performing in the chorus").
+    collapse_bio - optional. When truthy, the full bio text is tucked behind a
+                   "Read full bio" <details> toggle instead of shown inline.
+                   Used on event cast lists; left off on the main Artists page.
+{%- endcomment -%}
+<div class="artist-bio">
+  <div class="artist-heading">
+    <h2 class="artist-name">{{ include.artist.first_name }} {{ include.artist.last_name }}</h2>
+    {%- if include.role %}
+      <h3 class="artist-role">{{ include.role }}</h3>
+    {%- endif %}
+    {%- if include.note %}
+      <p class="artist-note">{{ include.note }}</p>
+    {%- endif %}
+  </div>
+
+  {%- if include.artist.headshot %}
+    <div class="headshot">
+      <img src="{{ include.artist.headshot }}" alt="{{ include.artist.first_name }} {{ include.artist.last_name }} Headshot" />
+    </div>
+  {%- endif %}
+
+  <div class="bio-content">
+    {%- if include.collapse_bio %}
+      <details class="bio-details">
+        <summary>Read full bio</summary>
+        {{ include.artist.content }}
+      </details>
+    {%- else %}
+      {{ include.artist.content }}
+    {%- endif %}
+  </div>
+</div>

@@ -2,10 +2,26 @@
 layout: default
 ---
 
-<main class="event">
-  <header class="event-header">
-    <h1 class="event-title">{{ page.title | escape }}</h1>
-  </header>
+<div class="event">
+  <div class="event-card">
+    <div class="divider"></div>
 
-  <div class="event-details">{{ content }}</div>
-</main>
+    <header class="event-header">
+      <p class="event-presents">{{ site.title }} Presents:</p>
+      <h1 class="event-title">{{ page.title | escape }}</h1>
+    </header>
+
+    <div class="event-details">{{ content }}</div>
+
+    {% if page.cast %}
+      <section class="event-cast">
+        <h2 class="section-heading">Cast</h2>
+        <div class="cast-list">
+          {% comment %} Cast entries render here -- wired up when the cast feature ships. {% endcomment %}
+        </div>
+      </section>
+    {% endif %}
+
+    <div class="divider"></div>
+  </div>
+</div>
