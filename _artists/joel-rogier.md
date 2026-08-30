@@ -4,7 +4,7 @@ active: true
 first_name: Joel
 last_name: Rogier
 category: Baritones
-headshot: assets/images/headshots/J-Rogier.png
+headshot: /assets/images/headshots/J-Rogier.png
 ---
 
 Noted for his "fine voice and comic timing" and his "robust and confident demeanor," St. Louis-based baritone, Joel Rogier, is dedicated to sharing the power of music with audiences of all ages. Joel is a frequent performer on St. Louis opera stages. Favorite roles at Union Avenue Opera include Harry Houdini (*Ragtime*), Crespel/Luther (*Les contes d'Hoffmann*), Mr. Lindquist (*A Little Night Music*), Moralès (*Carmen*), and most recently First Soldier in *Salome*.

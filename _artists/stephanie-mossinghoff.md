@@ -4,7 +4,7 @@ active: true
 first_name: Stephanie
 last_name: Mossinghoff
 category: Mezzo-Soprani
-headshot: assets/images/headshots/S-Mossinghoff.png
+headshot: /assets/images/headshots/S-Mossinghoff.png
 ---
 
 Mezzo-soprano and St. Louis native Stephanie Mossinghoff has appeared on stages across the St. Louis area. Notably, she has performed in five seasons with Winter Opera St. Louis. Her recent roles include Lolette in *La Rondine* and Inez in *The Gondoliers*; she was also in the chorus of Mozart’s *Die Zauberflöte*, Verdi’s *Macbeth*, Herbert’s *Naughty Marietta*, and Romberg’s *The Desert Song*. Mossinghoff has also performed with Union Avenue Opera in Bizet’s *Carmen*, Donizetti’s *Don Pasquale*, and Loewe’s *My Fair Lady*.

@@ -4,7 +4,7 @@ active: true
 first_name: Erica
 last_name: Ancell
 category: Soprani
-headshot: assets/images/headshots/E-Ancell.png
+headshot: /assets/images/headshots/E-Ancell.png
 ---
 
 Soprano Erica Ancell graduated in May 2025 from the University of Illinois-Urbana Champaign with a Master of Music in Vocal Performance. In February she performed with composer Ricky Ian Gordon and baritone Nathan Gunn in a devised theatre piece of Gordon's songs. In April Erica sang Proserpina in *L'orfeo* (Monteverdi) and in July made her debut with Chicago Summer Opera as Flavia in *Silla* (Handel).

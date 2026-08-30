@@ -4,7 +4,7 @@ active: true
 first_name: Anna 
 last_name: Edwards
 category: Soprani
-headshot: assets/images/headshots/A-Edwards.png
+headshot: /assets/images/headshots/A-Edwards.png
 ---
 
 Anna Edwards is an accomplished singer, music director, and voice and piano teacher. A senior at Webster University, she is pursuing a degree in vocal performance.

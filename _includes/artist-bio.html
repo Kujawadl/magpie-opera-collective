@@ -3,15 +3,15 @@
 
   Usage:
     {% include artist-bio.html artist=artist %}
-    {% include artist-bio.html artist=artist role="Gretel" note="Also performing in the chorus" collapse_bio=true %}
+    {% include artist-bio.html artist=artist role="Gretel" note="Also performing in the chorus" %}
 
   Params:
-    artist       - required. An entry from the `artists` collection.
-    role         - optional. Event-specific role/part name (e.g. "Gretel").
-    note         - optional. Short header text under the role (e.g. "Also performing in the chorus").
-    collapse_bio - optional. When truthy, the full bio text is tucked behind a
-                   "Read full bio" <details> toggle instead of shown inline.
-                   Used on event cast lists; left off on the main Artists page.
+    artist - required. An entry from the `artists` collection.
+    role   - optional. Event-specific role/part name (e.g. "Gretel").
+    note   - optional. Short header text under the role (e.g. "Also performing in the chorus").
+
+  The bio always renders in full, inline -- no collapse/expand toggle. Same behavior
+  whether this is used on the main Artists page or an event's cast list.
 {%- endcomment -%}
 <div class="artist-bio">
   <div class="artist-heading">
@@ -31,13 +31,6 @@
   {%- endif %}
 
   <div class="bio-content">
-    {%- if include.collapse_bio %}
-      <details class="bio-details">
-        <summary>Read full bio</summary>
-        {{ include.artist.content }}
-      </details>
-    {%- else %}
-      {{ include.artist.content }}
-    {%- endif %}
+    {{ include.artist.content }}
   </div>
 </div>

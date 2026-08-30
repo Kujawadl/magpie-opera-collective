@@ -1,6 +1,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {%- comment -%} Tints the mobile browser's own UI (Android Chrome's status bar/
+    toolbar, mainly) to match the page instead of leaving it at the browser's
+    default color. Mirrors --color-primary's resolution (see event-theme.html):
+    an event's theme.primary_color when set, else the site default -- the same
+    $primaryColor Sass default that :root's --color-primary falls back to in
+    theme.scss. Keep these three in sync if the site default color ever changes. {%- endcomment -%}
+  <meta name="theme-color" content="{{ page.theme.primary_color | default: '#59694f' }}" />
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

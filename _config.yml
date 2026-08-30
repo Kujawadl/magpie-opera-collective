@@ -9,6 +9,19 @@ collections:
   events:
     output: true
     permalink: /:collection/:name
+
+# The event-details layout splits each event's content into two parts on
+# <!--more--> -- the excerpt (subtitle + tickets button, shown above the
+# Details/Cast tabs) and everything after it (shown inside the Details tab).
+# Every event needs this set for that split to work correctly; defaulted here
+# so new events pick it up automatically instead of repeating it per-file.
+defaults:
+  - scope:
+      path: ""
+      type: events
+    values:
+      excerpt_separator: "<!--more-->"
+
 artist_categories:
  - Soprani
  - Mezzo-Soprani

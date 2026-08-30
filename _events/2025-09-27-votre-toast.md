@@ -6,6 +6,37 @@ title: Votre Toast
 description: An Evening of Opera Music and Merriment
 dates: 
   - 2025-09-27 20:00
+cast:
+  - artist: erica-ancell
+    role: Soprano
+  - artist: jessica-barnes
+    role: Soprano
+  - artist: margaret-beekman
+    role: Soprano
+  - artist: anna-edwards
+    role: Soprano
+  - artist: rita-schien
+    role: Soprano
+  - artist: kelly-beekman
+    role: Mezzo-Soprano
+  - artist: calista-goldwasser
+    role: Mezzo-Soprano
+  - artist: stephanie-mossinghoff
+    role: Mezzo-Soprano
+  - artist: spencer-domer
+    role: Tenor
+  - artist: will-kinsella
+    role: Tenor
+  - artist: kevin-neace
+    role: Tenor
+  - artist: riley-cameron
+    role: Baritone
+  - artist: javi-ojeda
+    role: Baritone
+  - artist: joel-rogier
+    role: Baritone
+  - artist: sunny-chung
+    role: Accompanist
 ---
 
 <h3 class="description">{{ page.description }}</h3>

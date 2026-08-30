@@ -4,7 +4,7 @@ active: true
 first_name: Sunny
 last_name: Chung
 category: Accompanist
-headshot: assets/images/headshots/S-Chung.png
+headshot: /assets/images/headshots/S-Chung.png
 ---
 
 Sun Hye Chung (Sunny Lee) is a Pianist, Collaborative Pianist and Piano Instructor. She has performed across South Korea, Europe, and the United States, including an orchestra performance with Philharmonie Con Spirito Vienna in Vienna, Austria and a piano solo in Paris, France.

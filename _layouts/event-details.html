@@ -4,24 +4,50 @@ layout: default
 
 <div class="event">
   <div class="event-card">
-    <div class="divider"></div>
-
     <header class="event-header">
       <p class="event-presents">{{ site.title }} Presents:</p>
       <h1 class="event-title">{{ page.title | escape }}</h1>
     </header>
 
-    <div class="event-details">{{ content }}</div>
+    <div class="event-subtitle">{{ page.excerpt }}</div>
+
+    {%- assign content_parts = content | split: "<!--more-->" -%}
+    {%- if content_parts.size > 1 -%}
+      {%- assign tab_content = content_parts[1] -%}
+    {%- else -%}
+      {%- assign tab_content = content -%}
+    {%- endif -%}
 
     {% if page.cast %}
-      <section class="event-cast">
-        <h2 class="section-heading">Cast</h2>
-        <div class="cast-list">
-          {% comment %} Cast entries render here -- wired up when the cast feature ships. {% endcomment %}
-        </div>
-      </section>
-    {% endif %}
+      <div class="event-tabs">
+        <input type="radio" name="event-tab" id="event-tab-details" class="event-tab-input" checked>
+        <input type="radio" name="event-tab" id="event-tab-cast" class="event-tab-input">
 
-    <div class="divider"></div>
+        <div class="event-tab-labels">
+          <label class="event-tab-label" for="event-tab-details">Details</label>
+          <label class="event-tab-label" for="event-tab-cast">Cast</label>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="event-tab-panel event-tab-panel--details">
+          <div class="event-details">{{ tab_content }}</div>
+        </div>
+
+        <div class="event-tab-panel event-tab-panel--cast">
+          <div class="cast-list">
+            {%- for entry in page.cast %}
+              {%- assign cast_artist = site.artists | where: "slug", entry.artist | first %}
+              {%- if cast_artist %}
+                {% include artist-bio.html artist=cast_artist role=entry.role note=entry.note %}
+                <div class="divider"></div>
+              {%- endif %}
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="event-details">{{ tab_content }}</div>
+    {% endif %}
   </div>
 </div>
