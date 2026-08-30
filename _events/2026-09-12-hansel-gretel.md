@@ -49,7 +49,7 @@ theme:
         <div><span class="bold">Doors Open:</span> 7:00 PM</div>
         <div><span class="bold">Show Time:</span> 7:30 PM</div>
         <div>
-          <a href="/assets/icals/2026-09-12-hansel-gretel.ics" download>
+          <a href="/assets/events/hansel-gretel/icals/2026-09-12-hansel-gretel.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar
           </a>
@@ -60,7 +60,7 @@ theme:
         <div><span class="bold">Doors Open:</span> 2:30 PM</div>
         <div><span class="bold">Show Time:</span> 3:00 PM</div>
         <div>
-          <a href="/assets/icals/2026-09-13-hansel-gretel.ics" download>
+          <a href="/assets/events/hansel-gretel/icals/2026-09-13-hansel-gretel.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar
           </a>
