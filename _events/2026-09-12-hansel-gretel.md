@@ -7,6 +7,41 @@ description: by Engelbert Humperdinck
 dates:
   - 2026-09-12 19:30
   - 2026-09-13 15:00
+cast:
+  - artist: calista-goldwasser
+    role: Hänsel
+  - artist: anna-edwards
+    role: Gretel
+  - artist: kelly-beekman
+    role: The Witch
+  - artist: stephanie-mossinghoff
+    role: The Mother
+  - artist: riley-cameron
+    role: The Father
+  - artist: jude-fernandez
+    role: The Sandman
+    note: Hänsel Cover, Act III · Chorus
+  - artist: emma-wittenauer
+    role: The Dew Fairy
+    note: Chorus
+  - artist: piper-billingsley
+    role: Chorus
+    note: The Witch Cover
+  - artist: holly-connor
+    role: Chorus
+    note: Gretel Cover, Act I
+  - artist: delanie-glover
+    role: Chorus
+    note: Gretel Cover, Act III
+  - artist: olivia-knopf
+    role: Chorus
+    note: The Mother Cover
+  - artist: audrey-sondag
+    role: Director
+  - artist: aj-murgo
+    role: Conductor
+  - artist: nancy-mayo
+    role: Accompanist
 theme:
   title_font: TAN Astoria
   title_font_stylesheet: /assets/events/hansel-gretel/font/stylesheet.css
@@ -18,7 +53,7 @@ theme:
   background_lightness: 85
   header_image: /assets/events/hansel-gretel/images/spiderweb.png
   footer_image: /assets/events/hansel-gretel/images/spiderweb.png
-  headshot_frame: /assets/events/hansel-gretel/images/spiderweb.png
+  headshot_frame: /assets/events/hansel-gretel/images/headshot-frame.png
   divider_image: /assets/events/hansel-gretel/images/divider.png
 ---
 
