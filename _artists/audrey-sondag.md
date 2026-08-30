@@ -1,9 +1,9 @@
 ---
 slug: audrey-sondag
-active: false
+active: true
 first_name: Audrey
 last_name: Sondag
-category: Crew
+category: Soprani
 headshot: /assets/images/headshots/A-Sondag.png
 ---
 

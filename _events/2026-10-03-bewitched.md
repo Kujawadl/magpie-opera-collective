@@ -7,6 +7,37 @@ description: An Evening of Opera and the Occult
 dates:
   - 2026-10-03 19:30
   - 2026-10-04 14:00
+cast:
+  - artist: erica-ancell
+    role: Soprano
+  - artist: anna-edwards
+    role: Soprano
+  - artist: grace-yukiko-fisher
+    role: Soprano
+  - artist: rita-schien
+    role: Soprano
+  - artist: audrey-sondag
+    role: Soprano
+  - artist: emma-wittenauer
+    role: Soprano
+  - artist: kelly-beekman
+    role: Mezzo-Soprano
+  - artist: calista-goldwasser
+    role: Mezzo-Soprano
+  - artist: stephanie-mossinghoff
+    role: Mezzo-Soprano
+  - artist: kevin-neace
+    role: Tenor
+  - artist: riley-cameron
+    role: Baritone
+  - artist: javi-ojeda
+    role: Baritone
+  - artist: jessica-barnes
+    role: Director
+  - artist: joel-rogier
+    role: Director
+  - artist: aj-murgo
+    role: Conductor
 theme:
   title_font: The maria story
   title_font_stylesheet: /assets/events/bewitched/font/stylesheet.css
@@ -19,7 +50,7 @@ theme:
   background_lightness: 85
   header_image: /assets/events/bewitched/images/stripes.png
   footer_image: /assets/events/bewitched/images/stripes.png
-  headshot_frame: /assets/events/bewitched/images/stripes.png
+  headshot_frame: /assets/events/bewitched/images/headshot-frame.png
 ---
 
 <h3 class="description">{{ page.description }}</h3>
