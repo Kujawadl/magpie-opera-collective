@@ -51,6 +51,7 @@ theme:
   header_image: /assets/events/bewitched/images/stripes.png
   footer_image: /assets/events/bewitched/images/stripes.png
   headshot_frame: /assets/events/bewitched/images/headshot-frame.png
+  divider_image: /assets/events/bewitched/images/divider.png
 ---
 
 <h3 class="description">{{ page.description }}</h3>

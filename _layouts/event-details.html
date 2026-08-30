@@ -2,6 +2,16 @@
 layout: default
 ---
 
+{%- comment -%}
+  page.url keeps the source filename's date prefix (e.g.
+  "/events/2025-09-27-votre-toast") -- this collection isn't treated like
+  Jekyll posts, so the `/:collection/:name` permalink in _config.yml doesn't
+  actually strip it. Derive the plain slug (e.g. "votre-toast") from the
+  filename instead, for building this event's asset folder paths.
+{%- endcomment -%}
+{%- assign event_basename = page.path | split: "/" | last | remove: ".md" -%}
+{%- assign event_slug = event_basename | slice: 11, 100 -%}
+
 <div class="event">
   <div class="event-card">
     <header class="event-header">
@@ -18,14 +28,16 @@ layout: default
       {%- assign tab_content = content -%}
     {%- endif -%}
 
-    {% if page.cast %}
+    {% if page.cast or page.gallery %}
       <div class="event-tabs">
         <input type="radio" name="event-tab" id="event-tab-details" class="event-tab-input" checked>
-        <input type="radio" name="event-tab" id="event-tab-cast" class="event-tab-input">
+        {% if page.cast %}<input type="radio" name="event-tab" id="event-tab-cast" class="event-tab-input">{% endif %}
+        {% if page.gallery %}<input type="radio" name="event-tab" id="event-tab-gallery" class="event-tab-input">{% endif %}
 
         <div class="event-tab-labels">
           <label class="event-tab-label" for="event-tab-details">Details</label>
-          <label class="event-tab-label" for="event-tab-cast">Cast</label>
+          {% if page.cast %}<label class="event-tab-label" for="event-tab-cast">Cast</label>{% endif %}
+          {% if page.gallery %}<label class="event-tab-label" for="event-tab-gallery">Gallery</label>{% endif %}
         </div>
 
         <div class="divider"></div>
@@ -34,6 +46,7 @@ layout: default
           <div class="event-details">{{ tab_content }}</div>
         </div>
 
+        {% if page.cast %}
         <div class="event-tab-panel event-tab-panel--cast">
           <div class="cast-list">
             {%- for entry in page.cast %}
@@ -45,6 +58,25 @@ layout: default
             {%- endfor %}
           </div>
         </div>
+        {% endif %}
+
+        {% if page.gallery %}
+        <div class="event-tab-panel event-tab-panel--gallery">
+          {% if page.gallery_video_id %}
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/{{ page.gallery_video_id }}"
+                title="{{ page.title | escape }} performance video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          {% endif %}
+          {%- assign gallery_folder = "/assets/events/" | append: event_slug | append: "/images/gallery" -%}
+          {% include gallery.html folder=gallery_folder alt_prefix=page.title %}
+        </div>
+        {% endif %}
       </div>
     {% else %}
       <div class="event-details">{{ tab_content }}</div>

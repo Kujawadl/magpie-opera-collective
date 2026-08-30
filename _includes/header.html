@@ -12,7 +12,7 @@
     {% assign url = page.url | replace: ".html", "" | split:'/' | last %}
     <ul class="nav-links">
       <li><a href="/about.html" {% if url == "about" %}class="active"{% endif %}>About</a></li>
-      <!-- <li><a href="/artists.html" {% if url == "artists" %}class="active"{% endif %}>Artists</a></li> -->
+      <li><a href="/artists.html" {% if url == "artists" %}class="active"{% endif %}>Artists</a></li>
       <li><a href="/events.html" {% if url == "events" %}class="active"{% endif %}>Events</a></li>
     </ul>
   </nav>

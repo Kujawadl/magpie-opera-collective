@@ -1,0 +1,113 @@
+{%- comment -%}
+  Renders a responsive photo mosaic with a click-to-enlarge lightbox.
+
+  Each photo needs two files already generated, following the naming
+  convention `<name>.jpg` (grid-quality, shown in the mosaic tile) and
+  `<name>-full.jpg` (lightbox-quality -- always the highest-resolution
+  version available, shown when a tile is clicked). This include only
+  renders markup for files that already exist; it does no image processing
+  itself.
+
+  Usage:
+    {% include gallery.html folder="/assets/events/votre-toast/images/gallery" %}
+    {% include gallery.html folder="/assets/events/votre-toast/images/gallery" max=12 more_link="/events/votre-toast/" more_text="See the Full Gallery" %}
+    {% include gallery.html files="DSC00961,DSC00985,DSC01013" photo_dir="/assets/events/votre-toast/images/gallery" %}
+
+  Params:
+    folder     - site-root-relative folder whose images (every `<name>.jpg`
+                 that isn't itself a `-full` file) are all included, sorted
+                 by filename. Ignored if `files` is given.
+    files      - comma-separated string of basenames (no extension/suffix)
+                 to include, in the given order. Requires `photo_dir`.
+                 Takes priority over `folder` when both are given.
+    photo_dir  - folder the `files` list's images live in.
+    max        - optional. Caps how many images render.
+    more_link  - optional URL. Rendered as a link after the grid, but only
+                 when there are more images available than `max` actually
+                 showed.
+    more_text  - optional, default "See More Photos".
+    alt_prefix - optional, default "Gallery photo". Prefix used to build
+                 each photo's alt text ("<alt_prefix> N of TOTAL").
+
+  Only one gallery (and its lightbox) is expected per page -- the lightbox
+  markup and `.gallery-item` class are not namespaced per instance.
+{%- endcomment -%}
+
+{%- assign alt_prefix = include.alt_prefix | default: "Gallery photo" -%}
+
+{%- if include.files -%}
+  {%- assign photo_dir = include.photo_dir -%}
+  {%- assign photo_names = include.files | split: "," -%}
+{%- else -%}
+  {%- assign photo_dir = include.folder -%}
+  {%- assign photo_basenames = "" -%}
+  {%- assign sep = "" -%}
+  {%- for f in site.static_files -%}
+    {%- if f.path contains photo_dir and f.extname == ".jpg" -%}
+      {%- unless f.basename contains "-full" -%}
+        {%- assign photo_basenames = photo_basenames | append: sep | append: f.basename -%}
+        {%- assign sep = "," -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign photo_names = photo_basenames | split: "," | sort -%}
+{%- endif -%}
+
+{%- assign total = photo_names.size -%}
+{%- assign max_count = include.max | default: total -%}
+{%- assign shown_names = photo_names | slice: 0, max_count -%}
+{%- assign shown_count = shown_names.size -%}
+
+{%- if shown_count > 0 -%}
+<div class="gallery-wrap">
+  <div class="gallery-grid">
+    {%- for name in shown_names -%}
+      {%- assign mod9 = forloop.index0 | modulo: 9 -%}
+      {%- assign mod4 = forloop.index0 | modulo: 4 -%}
+      {%- if forloop.rindex <= 6 -%}
+        {%- comment -%} Force the last several tiles to the plain 1x1 size,
+        regardless of the cycle below -- with grid-auto-flow: dense (see
+        theme.scss), a trailing 1x1 is far more likely to drop cleanly into
+        whatever space is left than a wide/large tile would, which keeps a
+        `max`-capped grid from ending in a visible hole. {%- endcomment -%}
+        {%- assign span = "normal" -%}
+      {%- elsif mod9 == 0 -%}
+        {%- assign span = "large" -%}
+      {%- elsif mod4 == 0 -%}
+        {%- assign span = "wide" -%}
+      {%- else -%}
+        {%- assign span = "normal" -%}
+      {%- endif -%}
+      {%- assign alt = alt_prefix | append: " " | append: forloop.index | append: " of " | append: total -%}
+      <button
+        type="button"
+        class="gallery-item span-{{ span }}"
+        data-full="{{ photo_dir }}/{{ name }}-full.jpg"
+        data-alt="{{ alt | escape }}"
+        aria-label="Open photo {{ forloop.index }} of {{ shown_count }} in the gallery"
+      >
+        <img
+          src="{{ photo_dir }}/{{ name }}.jpg"
+          alt="{{ alt | escape }}"
+          loading="lazy"
+          decoding="async"
+        />
+      </button>
+    {%- endfor -%}
+  </div>
+
+  {%- if include.more_link and total > shown_count -%}
+    <div class="gallery-more">
+      <a href="{{ include.more_link }}" class="btn">{{ include.more_text | default: "See More Photos" }}</a>
+    </div>
+  {%- endif -%}
+</div>
+
+<div class="lightbox" id="gallery-lightbox" aria-hidden="true">
+  <button type="button" class="lightbox-backdrop" aria-label="Close gallery"></button>
+  <button type="button" class="lightbox-close" aria-label="Close gallery"><i class="fa-solid fa-xmark"></i></button>
+  <button type="button" class="lightbox-prev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+  <img class="lightbox-img" src="" alt="" />
+  <button type="button" class="lightbox-next" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+{%- endif -%}

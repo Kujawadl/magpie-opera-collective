@@ -100,6 +100,10 @@ body {
   color: var(--color-text-dark);
   margin: 0;
   margin-top: calc($textLogoSize);
+  // The homepage hero/gallery break out to full viewport width (see .hero,
+  // .home-gallery below) via negative margins -- this guards against that
+  // ever introducing a horizontal scrollbar on any viewport.
+  overflow-x: hidden;
 
   h1 {
     font-size: 3.5rem;
@@ -137,6 +141,7 @@ body {
   left: 0;
   right: 0;
   padding: $headerPadding 0;
+  z-index: 999;
 
   a {
     text-decoration: none;
@@ -341,6 +346,10 @@ body {
 
   .post-title {
     text-align: center;
+  }
+
+  .hero {
+    margin-top: -1rem;
   }
 }
 
@@ -584,16 +593,22 @@ body {
     }
   }
 
-  // Details/Cast toggle -- only rendered when an event has a `cast:` front-matter
-  // block (see _layouts/event-details.html); events without one just render
-  // .event-details directly, unwrapped, exactly as before this existed.
+  // Details/Cast/Gallery toggle -- only rendered when an event has a `cast:`
+  // and/or `gallery:` front-matter value (see _layouts/event-details.html);
+  // an event with neither just renders .event-details directly, unwrapped,
+  // exactly as before this existed. Details is always present; Cast and
+  // Gallery are each independently optional.
   //
-  // Pure CSS, no JS: two visually-hidden radio inputs drive which panel shows via
-  // :checked ~ sibling selectors, with <label for="..."> elements styled as tab
-  // buttons. Native radio-group semantics also mean this reads sensibly to
-  // screen readers and is fully keyboard-operable without any extra ARIA wiring.
-  // Details starts selected so the cast list stays a click away rather than
-  // always-visible under every event's ticket info.
+  // Pure CSS for the tab switching itself: 2-3 visually-hidden radio inputs
+  // drive which panel shows via :checked ~ sibling selectors, with
+  // <label for="..."> elements styled as tab buttons -- reads sensibly to
+  // screen readers and is fully keyboard-operable with no extra ARIA wiring.
+  // Details starts selected so the cast/gallery content stays a click away
+  // rather than always-visible under every event's ticket info.
+  // assets/js/event-tabs.js layers deep-linking on top (e.g. a link to
+  // /events/some-event/#gallery pre-selects that tab, and selecting a tab
+  // updates the URL hash) -- pure progressive enhancement, the tabs already
+  // work with CSS alone if that script fails to load.
   .event-tabs {
     width: 100%;
 
@@ -638,25 +653,59 @@ body {
     }
 
     #event-tab-details:checked ~ .event-tab-labels label[for="event-tab-details"],
-    #event-tab-cast:checked ~ .event-tab-labels label[for="event-tab-cast"] {
+    #event-tab-cast:checked ~ .event-tab-labels label[for="event-tab-cast"],
+    #event-tab-gallery:checked ~ .event-tab-labels label[for="event-tab-gallery"] {
       background-color: var(--color-secondary);
       color: var(--color-bg-light);
     }
 
     #event-tab-details:focus-visible ~ .event-tab-labels label[for="event-tab-details"],
-    #event-tab-cast:focus-visible ~ .event-tab-labels label[for="event-tab-cast"] {
+    #event-tab-cast:focus-visible ~ .event-tab-labels label[for="event-tab-cast"],
+    #event-tab-gallery:focus-visible ~ .event-tab-labels label[for="event-tab-gallery"] {
       outline: 2px solid var(--color-secondary);
       outline-offset: 2px;
     }
 
     #event-tab-details:checked ~ .event-tab-panel--details,
-    #event-tab-cast:checked ~ .event-tab-panel--cast {
+    #event-tab-cast:checked ~ .event-tab-panel--cast,
+    #event-tab-gallery:checked ~ .event-tab-panel--gallery {
       display: block;
     }
 
     .cast-list {
       .divider:last-child {
         display: none;
+      }
+    }
+
+    // Wider than the rest of the (800px-max) card -- photos and video
+    // benefit from the room in a way prose doesn't. Same full-bleed
+    // technique as the homepage hero/gallery; works the same regardless of
+    // how deeply nested this panel is, since it's sized off the viewport,
+    // not its ancestors.
+    .event-tab-panel--gallery {
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      width: 100vw;
+    }
+
+    .video-embed {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+      aspect-ratio: 16 / 9;
+      background: black;
+
+      iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
       }
     }
   }
@@ -791,4 +840,473 @@ body {
 }
 .hidden {
   display: none !important;
+}
+
+/* Homepage: hero banner + performance-photo gallery + lightbox */
+
+blockquote {
+  border-left: 3px solid var(--color-secondary);
+  margin: 2rem 0;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  font-style: italic;
+  opacity: 0.9;
+
+  p {
+    margin: 0.5rem 0;
+  }
+}
+
+.home-intro {
+  text-align: center;
+  font-size: 1.15rem;
+  margin-top: 2rem;
+}
+
+.hero {
+  // Break out of .page-content.container's max-width to run full-bleed,
+  // regardless of that ancestor's own padding.
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  height: clamp(320px, 55vw, 640px);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  color: var(--color-text-light);
+
+  @include down("mobile") {
+    height: clamp(280px, 70vw, 420px);
+  }
+
+  .hero-slides {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .hero-prev,
+  .hero-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    color: white;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  .hero-prev {
+    left: 1rem;
+  }
+  .hero-next {
+    right: 1rem;
+  }
+
+  .hero-dots {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+
+    // Significantly smaller, with less space above them, so they don't eat
+    // into the limited vertical room text already needs on a short mobile hero.
+    @include down("mobile") {
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+  }
+
+  .hero-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
+
+    @include down("mobile") {
+      width: 0.35rem;
+      height: 0.35rem;
+    }
+
+    &.active {
+      background: white;
+      transform: scale(1.25);
+    }
+
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
+
+  @include down("mobile") {
+    .hero-prev,
+    .hero-next {
+      width: 2.25rem;
+      height: 2.25rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.15) 55%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+
+    // Stack the text panel, button, and dots as their own centered rows --
+    // .hero-text and .hero-btn are both inline-block (so each hugs its own
+    // content width), which without a flex/block context here can let them
+    // share a line at wide viewports instead of always stacking.
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // Fixed (not vw-scaled) horizontal padding, sized to always clear the
+    // .hero-prev/.hero-next buttons (1rem inset + button width) regardless
+    // of viewport -- clamp()'s vw-scaled middle value left gaps where the
+    // buttons and text still overlapped at some in-between widths.
+    padding: 2rem 4.5rem 2.5rem;
+
+    @include down("mobile") {
+      // Arrow buttons shrink to 2.25rem on mobile (see above), so less
+      // clearance is needed than the desktop/tablet value.
+      padding: 1.25rem 3.5rem 1.5rem;
+    }
+  }
+
+  // Semi-transparent dark card behind the eyebrow/title/subtitle so they
+  // stay readable no matter which of the 7 hero photos is showing --
+  // several are quite bright/busy where the overlay gradient alone isn't
+  // enough contrast. Shrinks to inline-block so it hugs the text rather
+  // than spanning edge to edge.
+  .hero-text {
+    display: inline-block;
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.48);
+    border-radius: 14px;
+    padding: 1.25rem 1.75rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    @include down("mobile") {
+      padding: 0.8rem 1.1rem;
+      border-radius: 10px;
+    }
+  }
+
+  .hero-eyebrow {
+    @extend .newsreader;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin: 0 0 0.5rem;
+    opacity: 0.9;
+
+    @include down("mobile") {
+      font-size: 0.65rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .hero-title {
+    @extend .clicker-script;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0 0 0.75rem;
+    color: var(--color-text-light);
+
+    // clamp()'s own vw-scaling never drops below 2.5rem, which still reads
+    // large on a narrow phone with a short hero -- give mobile its own,
+    // more aggressively-scaled range instead of just lowering the floor.
+    @include down("mobile") {
+      font-size: clamp(1.6rem, 9vw, 2.3rem);
+      margin-bottom: 0.35rem;
+    }
+  }
+
+  .hero-subtitle {
+    @extend .newsreader;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    max-width: 500px;
+    opacity: 0.95;
+
+    @include down("mobile") {
+      font-size: 0.8rem;
+      max-width: 320px;
+    }
+  }
+
+  .hero-btn {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+
+    @include down("mobile") {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
+      margin-top: 0.85rem;
+    }
+  }
+}
+
+.home-gallery {
+  // Same full-bleed breakout as .hero.
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  padding: $bodyVMargin 0;
+  margin-top: $bodyVMargin;
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+
+  &-heading {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      @extend .clicker-script;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin: 0;
+      opacity: 0.85;
+    }
+  }
+}
+
+// Wraps .gallery-grid (+ the optional "see more" link) -- rendered by
+// _includes/gallery.html. Doesn't do its own full-bleed breakout, since
+// .gallery-grid itself already centers/caps its own width (see below); the
+// page embedding the include (.home-gallery on the homepage,
+// .event-tab-panel--gallery on an event page) is what goes full-bleed.
+.gallery-wrap {
+  width: 100%;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-auto-rows: 140px;
+  // Dense packing lets a later, smaller item backfill a hole a bigger
+  // item's placement left earlier in the grid, instead of just pushing
+  // everything below it down -- this is what keeps the mosaic gapless at
+  // any width without needing JS. (A ragged final row, if the photo count
+  // doesn't divide evenly, is the one thing this can't fix -- acceptable.)
+  grid-auto-flow: dense;
+  gap: 0.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(0.75rem, 3vw, 2rem);
+
+  @include up("mobile") {
+    grid-auto-rows: 170px;
+    gap: 0.75rem;
+  }
+  @include up("desktop") {
+    grid-auto-rows: 200px;
+    gap: 1rem;
+  }
+}
+
+.gallery-more {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--color-secondary);
+
+  grid-column: span 1;
+  grid-row: span 1;
+
+  &.span-wide {
+    grid-column: span 2;
+  }
+  &.span-tall {
+    grid-row: span 2;
+  }
+  &.span-large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  &:hover img,
+  &:focus-visible img {
+    transform: scale(1.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+}
+
+// Prevents background scroll while the lightbox is open (toggled via JS).
+.lightbox-locked {
+  overflow: hidden;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+
+  &.open {
+    display: flex;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .lightbox-img {
+    position: relative;
+    z-index: 1;
+    max-width: min(92vw, 1600px);
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+  }
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    position: absolute;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.3rem;
+  }
+
+  .lightbox-prev {
+    left: 1rem;
+  }
+  .lightbox-next {
+    right: 1rem;
+  }
+
+  @include down("mobile") {
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.1rem;
+    }
+    .lightbox-close {
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+  }
 }

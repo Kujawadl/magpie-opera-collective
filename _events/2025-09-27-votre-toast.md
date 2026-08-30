@@ -6,6 +6,8 @@ title: Votre Toast
 description: An Evening of Opera Music and Merriment
 dates: 
   - 2025-09-27 20:00
+gallery: true
+gallery_video_id: FP0KY8c_G4I
 cast:
   - artist: erica-ancell
     role: Soprano
@@ -37,6 +39,15 @@ cast:
     role: Baritone
   - artist: sunny-chung
     role: Accompanist
+theme:
+  primary_color: '#4c0a05'
+  secondary_color: '#814440'
+  text_light_lightness: 85
+  background_lightness: 80
+  header_image: /assets/events/votre-toast/images/roses.png
+  footer_image: /assets/events/votre-toast/images/roses.png
+  headshot_frame: /assets/events/votre-toast/images/headshot-frame.png
+  divider_image: /assets/events/votre-toast/images/divider.png
 ---
 
 <h3 class="description">{{ page.description }}</h3>
