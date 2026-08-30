@@ -46,8 +46,8 @@ theme:
   title_font: TAN Astoria
   title_font_stylesheet: /assets/events/hansel-gretel/font/stylesheet.css
   title_font_size: 4rem
-  primary_color: '#52641d'
-  secondary_color: '#364215'
+  primary_color: "#52641d"
+  secondary_color: "#364215"
   text_dark_lightness: -50
   text_light_lightness: 90
   background_lightness: 85
@@ -59,10 +59,9 @@ theme:
 
 <h3 class="description">{{ page.description }}</h3>
 
-<p class="center">
-  <a href="#" target="_blank" class="btn tickets-btn btn-disabled" data-date="{{ page.dates | last }}">
-    Tickets On Sale Soon!
-    <!-- <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i> -->
+<p class="center excerpt-only">
+  <a href="{{page.url}}" class="btn tickets-btn" data-date="{{ page.dates | last }}">
+    View Showtimes
   </a>
 </p>
 
@@ -84,6 +83,14 @@ theme:
         <div><span class="bold">Doors Open:</span> 7:00 PM</div>
         <div><span class="bold">Show Time:</span> 7:30 PM</div>
         <div>
+          <p>
+            <a href="https://square.link/u/d9F95RAK" target="_blank" class="btn tickets-btn" data-date="2026-09-12 19:00">
+              Get Tickets for Saturday
+              <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+        </div>
+        <div>
           <a href="/assets/events/hansel-gretel/icals/2026-09-12-hansel-gretel.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar
@@ -94,6 +101,14 @@ theme:
         <div class="showing-date">Sunday September 13, 2026</div>
         <div><span class="bold">Doors Open:</span> 2:30 PM</div>
         <div><span class="bold">Show Time:</span> 3:00 PM</div>
+        <div>
+          <p>
+            <a href="https://square.link/u/So8ZJgvp" target="_blank" class="btn tickets-btn" data-date="2026-09-13 15:00">
+              Get Tickets for Sunday
+              <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+        </div>
         <div>
           <a href="/assets/events/hansel-gretel/icals/2026-09-13-hansel-gretel.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
@@ -115,5 +130,6 @@ theme:
   <ul>
       <li>Run time includes a 15 minute intermission</li>
       <li>This show is performed in English</li>
+      <li>Tickets will be emailed upon receipt of payment</li>
   </ul>
 </div>
