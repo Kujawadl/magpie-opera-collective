@@ -12,8 +12,8 @@ theme:
   title_font_stylesheet: /assets/events/bewitched/font/stylesheet.css
   title_font_size: 8rem
   title_font_weight: normal
-  primary_color: '#92470d'
-  secondary_color: '#40230c'
+  primary_color: "#92470d"
+  secondary_color: "#40230c"
   text_dark_lightness: -50
   text_light_lightness: 90
   background_lightness: 85
@@ -24,12 +24,11 @@ theme:
 
 <h3 class="description">{{ page.description }}</h3>
 
-<p class="center">
-  <a href="https://greenfinchstl.com/tickets" target="_blank" class="btn tickets-btn" data-date="{{ page.dates | last }}">
-    Get Tickets
-    <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
+<p class="center excerpt-only">
+  <a href="{{page.url}}" class="btn tickets-btn" data-date="{{ page.dates | last }}">
+    View Showtimes
   </a>
-<p>
+</p>
 
 <!--more-->
 
@@ -49,6 +48,14 @@ theme:
         <div><span class="bold">Doors Open:</span> 6:30 PM</div>
         <div><span class="bold">Show Time:</span> 7:30 PM</div>
         <div>
+          <p>
+            <a href="https://www.purplepass.com/events/384564-bewitched-an-evening-of-opera-and-the-occult-oct-3rd-2026" target="_blank" class="btn tickets-btn" data-date="2026-09-12 19:00">
+              Get Tickets for Saturday
+              <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+        </div>
+        <div>
           <a href="/assets/events/bewitched/icals/2026-10-03-bewitched.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar
@@ -59,6 +66,14 @@ theme:
         <div class="showing-date">Sunday, October 4, 2026</div>
         <div><span class="bold">Doors Open:</span> 2:00 PM</div>
         <div><span class="bold">Show Time:</span> 3:00 PM</div>
+        <div>
+          <p>
+            <a href="https://www.purplepass.com/events/384565-bewitched-an-evening-of-opera-and-the-occult-oct-4th-2026" target="_blank" class="btn tickets-btn" data-date="2026-09-12 19:00">
+              Get Tickets for Saturday
+              <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+        </div>
         <div>
           <a href="/assets/events/bewitched/icals/2026-10-04-bewitched.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
