@@ -3,7 +3,7 @@ slug: delanie-glover
 active: true
 first_name: Delanie
 last_name: Glover
-category: Soprani
+category: Webster's Opera Studio
 headshot: /assets/images/headshots/D-Glover.png
 ---
 

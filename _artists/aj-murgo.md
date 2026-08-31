@@ -1,6 +1,6 @@
 ---
 slug: aj-murgo
-active: false
+active: true
 first_name: A.J.
 last_name: Murgo
 category: Crew

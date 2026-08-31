@@ -3,7 +3,7 @@ slug: jude-fernandez
 active: true
 first_name: Jude
 last_name: Fernandez
-category: Mezzo-Soprani
+category: Webster's Opera Studio
 headshot: /assets/images/headshots/J-Fernandez.png
 ---
 

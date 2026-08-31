@@ -3,7 +3,7 @@ slug: piper-billingsley
 active: true
 first_name: Piper
 last_name: Billingsley
-category: Mezzo-Soprani
+category: Webster's Opera Studio
 headshot: /assets/images/headshots/P-Billingsley.png
 ---
 

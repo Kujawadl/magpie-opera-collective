@@ -3,7 +3,7 @@ slug: holly-connor
 active: true
 first_name: Holly
 last_name: Connor
-category: Soprani
+category: Webster's Opera Studio
 headshot: /assets/images/headshots/H-Connor.png
 ---
 

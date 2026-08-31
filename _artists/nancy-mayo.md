@@ -3,7 +3,7 @@ slug: nancy-mayo
 active: true
 first_name: Nancy
 last_name: Mayo
-category: Accompanist
+category: Accompanists
 headshot: /assets/images/headshots/N-Mayo.png
 ---
 

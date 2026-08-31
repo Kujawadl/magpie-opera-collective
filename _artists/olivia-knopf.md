@@ -3,7 +3,7 @@ slug: olivia-knopf
 active: true
 first_name: Olivia
 last_name: Knopf
-category: Soprani
+category: Webster's Opera Studio
 headshot: /assets/images/headshots/L-Knopf.png
 ---
 
