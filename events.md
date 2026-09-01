@@ -8,7 +8,7 @@ permalink: events
 	<div id="upcoming" class="hidden">
 		<h1 class="center">Upcoming Events</h1>
 		{% for event in site.events %}
-			<div class="event-excerpt" data-date="{{ event.dates | last }}">
+			<div class="event-excerpt" data-date="{{ event.dates | last | to_iso8601: event.timezone }}">
 				<h2 class="event-title">
 					<a href="{{ event.url }}">{{ event.title }}</a>
 					<div class="event-dates">

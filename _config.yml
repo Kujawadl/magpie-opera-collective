@@ -2,10 +2,16 @@ title: Magpie Opera Collective
 url: "https://magpieopera.org"
 theme: minima
 future: true
+plugins:
+  - jekyll-sitemap
 timezone: US/Central
+
+sass:
+  quiet_deps: true
+  silence_deprecations: ["import"]
 collections:
   artists:
-    output: true
+    output: false
   events:
     output: true
     permalink: /:collection/:name
@@ -15,12 +21,21 @@ collections:
 # Details/Cast tabs) and everything after it (shown inside the Details tab).
 # Every event needs this set for that split to work correctly; defaulted here
 # so new events pick it up automatically instead of repeating it per-file.
+#
+# `timezone` (an IANA zone name -- see _plugins/timezone_filters.rb's
+# `to_iso8601` filter, used wherever an event date/time gets parsed or
+# output) is defaulted here too: Magpie only ever performs in St. Louis, so
+# every event is America/Chicago and no one should have to remember to set
+# this per-event. If a future event is ever at a venue in a different
+# timezone, override it directly in that one event's own front matter --
+# `defaults:` only fills in the value when a page doesn't already set it.
 defaults:
   - scope:
       path: ""
       type: events
     values:
       excerpt_separator: "<!--more-->"
+      timezone: America/Chicago
 
 artist_categories:
  - Soprani

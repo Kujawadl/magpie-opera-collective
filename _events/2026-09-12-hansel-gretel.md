@@ -4,6 +4,9 @@ excerpt_separator: <!--more-->
 
 title: Hansel and Gretel
 description: by Engelbert Humperdinck
+image: /assets/events/hansel-gretel/images/ogflyer.jpg
+location_name: "Community Music School of Webster University"
+location_url: "https://share.google/Z9vyUeA70uLUU3ETK"
 dates:
   - 2026-09-12 19:30
   - 2026-09-13 15:00
@@ -60,7 +63,7 @@ theme:
 <h3 class="description">{{ page.description }}</h3>
 
 <p class="center excerpt-only">
-  <a href="{{page.url}}" class="btn tickets-btn" data-date="{{ page.dates | last }}">
+  <a href="{{page.url}}" class="btn tickets-btn" data-date="{{ page.dates | last | to_iso8601: page.timezone }}">
     View Showtimes
   </a>
 </p>
@@ -70,8 +73,8 @@ theme:
 <div>
   <div class="location">
     <span class="bold">Location:</span>
-    <a href="https://share.google/Z9vyUeA70uLUU3ETK" target="_blank">
-      Community Music School of Webster University
+    <a href="{{ page.location_url }}" target="_blank">
+      {{ page.location_name }}
       <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
     </a>
   </div>
@@ -84,7 +87,7 @@ theme:
         <div><span class="bold">Show Time:</span> 7:30 PM</div>
         <div>
           <p>
-            <a href="https://square.link/u/d9F95RAK" target="_blank" class="btn tickets-btn" data-date="2026-09-12 19:00">
+            <a href="https://square.link/u/d9F95RAK" target="_blank" class="btn tickets-btn" data-date="{{ "2026-09-12 19:00" | to_iso8601: page.timezone }}">
               Get Tickets for Saturday
               <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
             </a>
@@ -103,7 +106,7 @@ theme:
         <div><span class="bold">Show Time:</span> 3:00 PM</div>
         <div>
           <p>
-            <a href="https://square.link/u/So8ZJgvp" target="_blank" class="btn tickets-btn" data-date="2026-09-13 15:00">
+            <a href="https://square.link/u/So8ZJgvp" target="_blank" class="btn tickets-btn" data-date="{{ "2026-09-13 15:00" | to_iso8601: page.timezone }}">
               Get Tickets for Sunday
               <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
             </a>

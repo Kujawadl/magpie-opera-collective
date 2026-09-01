@@ -2,7 +2,7 @@
 layout: default
 title: Meet Our Artists
 permalink: artists
-image: assets/images/artists.jpeg
+image: /assets/images/artists.jpeg
 ---
 
 {% for group in site.artist_categories %}

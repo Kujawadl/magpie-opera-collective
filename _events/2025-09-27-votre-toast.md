@@ -4,6 +4,9 @@ excerpt_separator: <!--more-->
 
 title: Votre Toast
 description: An Evening of Opera Music and Merriment
+image: /assets/events/votre-toast/images/gallery/DSC00961-full.jpg
+location_name: "Greenfinch Theater & Dive"
+location_url: "https://share.google/PIZmQglg4kOdVE9wP"
 dates: 
   - 2025-09-27 20:00
 gallery: true
@@ -52,7 +55,7 @@ theme:
 
 <h3 class="description">{{ page.description }}</h3>
 
-<a href="https://greenfinchstl.com/tickets" target="_blank" class="btn tickets-btn" data-date="{{ page.dates | last }}">
+<a href="https://greenfinchstl.com/tickets" target="_blank" class="btn tickets-btn" data-date="{{ page.dates | last | to_iso8601: page.timezone }}">
   Get Tickets
   <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
 </a>
@@ -62,8 +65,8 @@ theme:
 <div>
   <div class="location">
     <span class="bold">Location:</span>
-    <a href="https://share.google/PIZmQglg4kOdVE9wP" target="_blank">
-      Greenfinch Theater & Dive
+    <a href="{{ page.location_url }}" target="_blank">
+      {{ page.location_name }}
       <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
     </a>
   </div>

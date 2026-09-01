@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Welcome to Magpie Opera Collective
-image: assets/images/gallery/DSC00961-hero-1600.jpg
+image: /assets/images/gallery/DSC00961-hero-1600.jpg
 hero_photos:
   - file: DSC00961
     alt: "The full Magpie Opera Collective cast gathered on stage in gowns and suits, in front of the Votre Toast title screen"
