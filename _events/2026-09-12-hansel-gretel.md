@@ -87,7 +87,7 @@ theme:
         <div><span class="bold">Show Time:</span> 7:30 PM</div>
         <div>
           <p>
-            <a href="https://square.link/u/d9F95RAK" target="_blank" class="btn tickets-btn" data-date="{{ "2026-09-12 19:00" | to_iso8601: page.timezone }}">
+            <a href="https://checkout.square.site/merchant/MLJ125R715ZV8/checkout/7FCVF3EATGROF4CHWHSKAK4K" target="_blank" class="btn tickets-btn" data-date="{{ "2026-09-12 19:00" | to_iso8601: page.timezone }}">
               Get Tickets for Saturday
               <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
             </a>
@@ -106,7 +106,7 @@ theme:
         <div><span class="bold">Show Time:</span> 3:00 PM</div>
         <div>
           <p>
-            <a href="https://square.link/u/So8ZJgvp" target="_blank" class="btn tickets-btn" data-date="{{ "2026-09-13 15:00" | to_iso8601: page.timezone }}">
+            <a href="https://checkout.square.site/merchant/MLJ125R715ZV8/checkout/LV7ZDQZJ6MUUFWXLCVVFDV46" target="_blank" class="btn tickets-btn" data-date="{{ "2026-09-13 15:00" | to_iso8601: page.timezone }}">
               Get Tickets for Sunday
               <i class="fa-solid fa-2xs fa-arrow-up-right-from-square"></i>
             </a>
