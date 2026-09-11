@@ -2,6 +2,7 @@
 layout: default
 title: Upcoming Events
 permalink: events
+description: See what's next from Magpie Opera Collective and get tickets to our upcoming opera performances in St. Louis, Missouri.
 ---
 
 <div id="events">

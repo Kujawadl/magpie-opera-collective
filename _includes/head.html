@@ -8,7 +8,20 @@
     $primaryColor Sass default that :root's --color-primary falls back to in
     theme.scss. Keep these three in sync if the site default color ever changes. {%- endcomment -%}
   <meta name="theme-color" content="{{ page.theme.primary_color | default: '#59694f' }}" />
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  {%- comment -%}
+    Avoid a doubled brand name in the <title> tag -- e.g. a page whose own
+    title already contains "Magpie Opera Collective" (the homepage's does,
+    to keep the brand in social-share previews) getting " | Magpie Opera
+    Collective" appended a second time on top of that. Only append the site
+    title as a suffix when the page's own title doesn't already contain it.
+  {%- endcomment -%}
+  {%- if page.title and page.title contains site.title -%}
+    <title>{{ page.title }}</title>
+  {%- elsif page.title -%}
+    <title>{{ page.title }} | {{ site.title }}</title>
+  {%- else -%}
+    <title>{{ site.title }}</title>
+  {%- endif -%}
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -81,6 +94,21 @@
     {%- assign og_description = page.description | default: "Artist-run opera collective in St. Louis, MO, highlighting emerging talent." -%}
   {%- endif -%}
 
+  {%- comment -%}
+    Real <meta name="description"> tag -- reuses the same og_description
+    computed above (per-event showtimes+venue, or the site default) instead
+    of leaving Google to auto-generate a snippet. Controls what shows under
+    our result in search, which drives click-through even though it isn't
+    itself a ranking signal.
+  {%- endcomment -%}
+  <meta name="description" content="{{ og_description | escape }}" />
+  {%- comment -%}
+    Canonical tag -- cheap defense-in-depth for the apex-vs-www duplicate
+    content question (the real fix lives in GitHub's Pages settings, not
+    here) and generally good practice regardless.
+  {%- endcomment -%}
+  <link rel="canonical" href="{{ page_url }}" />
+
   <meta property="og:title" content="{{ page.title | default: 'Magpie Opera Collective' }}" />
   <meta property="og:description" content="{{ og_description | escape }}" />
   <meta property="og:type" content="website" />
@@ -144,6 +172,43 @@
     }
   </script>
   {%- endif -%}
+
+  {%- comment -%}
+    Site-wide Organization structured data (schema.org PerformingGroup),
+    separate from the per-event TheaterEvent @graph above -- ties the brand
+    name to St. Louis/Missouri and to our real social profiles for Google's
+    entity understanding, independent of any one page's content. Emitted on
+    every page (harmless duplication -- Google supports multiple JSON-LD
+    blocks per page, and event pages legitimately have both).
+
+    `alternateName` calls out the shorter "Magpie Opera" phrasing people
+    actually search for -- remove this line if that reads as overreaching.
+  {%- endcomment -%}
+  {%- assign social_profiles = site.socials | where_exp: "s", "s.link contains 'http'" -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PerformingGroup",
+      "name": {{ site.title | jsonify }},
+      "alternateName": "Magpie Opera",
+      "url": {{ site.url | jsonify }},
+      "logo": {{ site.url | append: "/assets/images/text-logo.png" | jsonify }},
+      "image": {{ site.url | append: "/assets/images/text-logo.png" | jsonify }},
+      "description": "Artist-run opera collective in St. Louis, Missouri, showcasing emerging vocal talent.",
+      "foundingDate": "2025",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "St. Louis",
+        "addressRegion": "MO",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        {%- for social in social_profiles -%}
+          {{ social.link | jsonify }}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
 
   {{ page.head_content }}
 

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Welcome to Magpie Opera Collective
+description: Magpie Opera Collective is an artist-run opera company in St. Louis, Missouri, staging bold new and classic productions and spotlighting emerging vocal talent.
 image: /assets/images/gallery/DSC00961-hero-1600.jpg
 hero_photos:
   - file: DSC00961

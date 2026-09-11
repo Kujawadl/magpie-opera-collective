@@ -3,6 +3,7 @@ layout: default
 title: Meet Our Artists
 permalink: artists
 image: /assets/images/artists.jpeg
+description: Meet the singers, musicians, and creators of Magpie Opera Collective, an emerging opera company based in St. Louis, Missouri.
 ---
 
 {% for group in site.artist_categories %}
