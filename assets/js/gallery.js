@@ -82,6 +82,62 @@ function initGalleryLightbox() {
   backdrop?.addEventListener("click", close);
   prevBtn?.addEventListener("click", () => show(currentIndex - 1));
   nextBtn?.addEventListener("click", () => show(currentIndex + 1));
+
+  // --- Touch swipe navigation ---
+  //
+  // Swipe left/right anywhere in the lightbox (image or backdrop) to move
+  // to the next/previous photo. A swipe is a single touch that travels
+  // mostly horizontally past SWIPE_THRESHOLD px; SWIPE_RESTRAINT caps how
+  // much vertical drift is still allowed to count (keeps an intentional
+  // diagonal drag from misfiring as a swipe). Below that threshold nothing
+  // happens, so a plain tap still falls through to the close/backdrop
+  // click handlers above.
+  const SWIPE_THRESHOLD = 50;
+  const SWIPE_RESTRAINT = 75;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchActive = false;
+
+  /** @param {TouchEvent} e */
+  function onTouchStart(e) {
+    if (e.touches.length !== 1) {
+      touchActive = false;
+      return;
+    }
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchActive = true;
+  }
+
+  /** @param {TouchEvent} e */
+  function onTouchMove(e) {
+    if (!touchActive || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    // Once the drag is clearly horizontal, stop the browser from treating
+    // it as a scroll or turning it into a click when the finger lifts.
+    if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      e.preventDefault();
+    }
+  }
+
+  /** @param {TouchEvent} e */
+  function onTouchEnd(e) {
+    if (!touchActive) return;
+    touchActive = false;
+    const touch = e.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+    if (Math.abs(dx) >= SWIPE_THRESHOLD && Math.abs(dy) <= SWIPE_RESTRAINT) {
+      e.preventDefault();
+      show(dx < 0 ? currentIndex + 1 : currentIndex - 1);
+    }
+  }
+
+  lightbox.addEventListener("touchstart", onTouchStart, { passive: true });
+  lightbox.addEventListener("touchmove", onTouchMove, { passive: false });
+  lightbox.addEventListener("touchend", onTouchEnd);
 }
 
 document.addEventListener("DOMContentLoaded", initGalleryLightbox);
