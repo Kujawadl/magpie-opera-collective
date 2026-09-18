@@ -21,6 +21,10 @@
                  to include, in the given order. Requires `photo_dir`.
                  Takes priority over `folder` when both are given.
     photo_dir  - folder the `files` list's images live in.
+    credit     - optional. When given, renders "Event Photography by
+                 <credit>" at the top of the gallery, above the grid (and
+                 below any video, since on an event page this include is
+                 rendered after that markup).
     max        - optional. Caps how many images render.
     more_link  - optional URL. Rendered as a link after the grid, but only
                  when there are more images available than `max` actually
@@ -60,6 +64,9 @@
 
 {%- if shown_count > 0 -%}
 <div class="gallery-wrap">
+  {%- if include.credit -%}
+    <p class="gallery-credit">Event Photography by {{ include.credit }}</p>
+  {%- endif -%}
   <div class="gallery-grid">
     {%- for name in shown_names -%}
       {%- assign mod9 = forloop.index0 | modulo: 9 -%}

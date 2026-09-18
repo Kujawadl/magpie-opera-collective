@@ -74,7 +74,7 @@ layout: default
             </div>
           {% endif %}
           {%- assign gallery_folder = "/assets/events/" | append: event_slug | append: "/images/gallery" -%}
-          {% include gallery.html folder=gallery_folder alt_prefix=page.title %}
+          {% include gallery.html folder=gallery_folder alt_prefix=page.title credit=page.gallery_credit %}
         </div>
         {% endif %}
       </div>

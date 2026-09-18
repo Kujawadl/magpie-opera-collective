@@ -11,6 +11,7 @@ dates:
   - 2025-09-27 20:00
 gallery: true
 gallery_video_id: FP0KY8c_G4I
+gallery_credit: "G&A Productions"
 cast:
   - artist: erica-ancell
     role: Soprano

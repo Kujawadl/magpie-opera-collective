@@ -1136,6 +1136,15 @@ blockquote {
   width: 100%;
 }
 
+// Optional photographer credit, rendered by _includes/gallery.html above
+// the grid when the page's `gallery_credit` front matter is set.
+.gallery-credit {
+  margin: 0 0 1rem;
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));

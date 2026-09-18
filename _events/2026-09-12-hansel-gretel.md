@@ -11,6 +11,7 @@ dates:
   - 2026-09-12 19:30
   - 2026-09-13 15:00
 gallery: true
+gallery_credit: "Emma Wittenauer"
 cast:
   - artist: calista-goldwasser
     role: Hänsel
