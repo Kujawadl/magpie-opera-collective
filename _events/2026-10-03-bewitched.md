@@ -16,7 +16,7 @@ cast:
   - artist: anna-edwards
     role: Soprano
   - artist: grace-yukiko-fisher
-    role: Soprano
+    role: Soprano & Director
   - artist: rita-schien
     role: Soprano
   - artist: audrey-sondag
@@ -26,7 +26,7 @@ cast:
   - artist: kelly-beekman
     role: Mezzo-Soprano
   - artist: calista-goldwasser
-    role: Mezzo-Soprano
+    role: Mezzo-Soprano & Director
   - artist: stephanie-mossinghoff
     role: Mezzo-Soprano
   - artist: kevin-neace
@@ -37,10 +37,16 @@ cast:
     role: Baritone
   - artist: jessica-barnes
     role: Director
+  - artist: margaret-beekman
+    role: Director
   - artist: joel-rogier
     role: Director
   - artist: aj-murgo
     role: Conductor
+  - artist: hedy-rothfuss
+    role: Accompanist
+  - artist: peter-sykes
+    role: Accompanist
 theme:
   title_font: The maria story
   title_font_stylesheet: /assets/events/bewitched/font/stylesheet.css

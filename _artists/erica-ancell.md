@@ -2,15 +2,15 @@
 slug: erica-ancell
 active: true
 first_name: Erica
-last_name: Ancell
+last_name: Ancell Gould
 category: Soprani
-headshot: /assets/images/headshots/E-Ancell.png
+headshot: /assets/images/headshots/E-Ancell-Gould.png
 ---
 
-Soprano Erica Ancell graduated in May 2025 from the University of Illinois-Urbana Champaign with a Master of Music in Vocal Performance. In February she performed with composer Ricky Ian Gordon and baritone Nathan Gunn in a devised theatre piece of Gordon's songs. In April Erica sang Proserpina in *L'orfeo* (Monteverdi) and in July made her debut with Chicago Summer Opera as Flavia in *Silla* (Handel).
+Erica Ancell Gould, soprano, is a Chicago-based vocalist with a Bachelor’s of Music in Vocal Performance from Webster University and a Master’s of Music in Vocal Performance from the University of Illinois. This summer, she was thrilled to debut the role of Susanna in *Le Nozze di Figaro* with Chicago Summer Opera. Other roles include Flavia (*Silla*), Proserpina (*L’Orfeo*), Brigitta (*Iolanta*), and Legion Woman (*Black Square*).
 
-In Lyric Theatre @Illinois' Opera Scenes Erica sang Leïla (*Les pêcheurs des perles*), Helena (*A Midsummer Night's Dream*) & Béatrice (*Béatrice et Bénèdict*). Other performances include *Die Fledermaus* (2023) with the University of Illinois, *Falstaff* (2022) with Union Avenue Opera, *Macbeth* (2023) with Winter Opera St. Louis, and *Handel's Messiah* (2022) with Greenville University as Soprano Soloist.
+Erica has also appeared in *Die Fledermaus* with the University of Illinois, *Falstaff* with Union Avenue Opera, and *Macbeth* with Winter Opera St. Louis.
 
-In 2023 Erica was the Bach Society of St. Louis' Soprano Young Artist and Winner of Webster University's Concerto and Aria Competition. She spent the summer of 2024 working with Opera Theatre of Saint Louis' administrative team.
+Erica spent the summer of 2024 working with Opera Theatre of Saint Louis’ administrative team. She was the 2023 winner of Webster University’s Concerto and Aria Competition. In 2022, Erica was the Soprano Young Artist for the Bach Society of St. Louis. She also sang Handel’s *Messiah* with Greenville University as Soprano Soloist.
 
-In December, Erica joins Opera Aeterna as Brigitta in Tchaikovsky's *Iolanta*.
+Erica is excited to return to St. Louis to join *Bewitched* with Magpie Opera Collective!
