@@ -47,6 +47,7 @@ cast:
     role: Accompanist
   - artist: peter-sykes
     role: Accompanist
+gallery: true
 theme:
   title_font: The maria story
   title_font_stylesheet: /assets/events/bewitched/font/stylesheet.css
