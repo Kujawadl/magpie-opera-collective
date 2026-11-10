@@ -95,7 +95,7 @@ theme:
             </a>
           </p>
         </div>
-        <div>
+        <div class="calendar-link" data-date="{{ "2026-09-12 19:00" | to_iso8601: page.timezone }}">
           <a href="/assets/events/hansel-gretel/icals/2026-09-12-hansel-gretel.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar
@@ -114,7 +114,7 @@ theme:
             </a>
           </p>
         </div>
-        <div>
+        <div class="calendar-link" data-date="{{ "2026-09-13 15:00" | to_iso8601: page.timezone }}">
           <a href="/assets/events/hansel-gretel/icals/2026-09-13-hansel-gretel.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar

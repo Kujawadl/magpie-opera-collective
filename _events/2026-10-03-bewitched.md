@@ -10,6 +10,8 @@ location_url: "https://share.google/PIZmQglg4kOdVE9wP"
 dates:
   - 2026-10-03 19:30
   - 2026-10-04 14:00
+gallery: true
+gallery_credit: "Barry Kothe of Urban Runway Photography"
 cast:
   - artist: erica-ancell
     role: Soprano
@@ -96,7 +98,7 @@ theme:
             </a>
           </p>
         </div>
-        <div>
+        <div class="calendar-link" data-date="{{ "2026-10-03 18:30" | to_iso8601: page.timezone }}">
           <a href="/assets/events/bewitched/icals/2026-10-03-bewitched.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar
@@ -115,7 +117,7 @@ theme:
             </a>
           </p>
         </div>
-        <div>
+        <div class="calendar-link" data-date="{{ "2026-10-04 14:00" | to_iso8601: page.timezone }}">
           <a href="/assets/events/bewitched/icals/2026-10-04-bewitched.ics" download>
             <i class="fa-regular fa-calendar-plus"></i>
             Add to Calendar
