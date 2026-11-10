@@ -33,7 +33,7 @@ concurrency:
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # ruby/setup-ruby has no Ruby 3.2.3 build for ubuntu-26.04 (what ubuntu-latest now resolves to)
     steps:
       - name: Checkout
         uses: actions/checkout@v4
