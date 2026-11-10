@@ -10,6 +10,8 @@ location_url: "https://share.google/PIZmQglg4kOdVE9wP"
 dates:
   - 2026-10-03 19:30
   - 2026-10-04 14:00
+gallery: true
+gallery_credit: "Barry Kothe of Urban Runway Photography"
 cast:
   - artist: erica-ancell
     role: Soprano
