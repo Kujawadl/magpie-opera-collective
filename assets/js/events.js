@@ -57,15 +57,17 @@ function archivePastEvents() {
   upcomingEventsSection?.classList.remove("hidden");
 }
 
-function hidePastEventTicketBtns() {
-  const btns = document.querySelectorAll(".tickets-btn");
-  btns.forEach((btn) => {
-    const eventDate = btn.getAttribute("data-date");
+// Ticket buttons and add-to-calendar links only make sense before a showing,
+// so any element with one of these classes is removed once its data-date passes.
+function hidePastEventActions() {
+  const actions = document.querySelectorAll(".tickets-btn, .calendar-link");
+  actions.forEach((el) => {
+    const eventDate = el.getAttribute("data-date");
     if (isPastDate(eventDate)) {
-      btn.remove();
+      el.remove();
     }
   });
 }
 
 document.addEventListener("DOMContentLoaded", archivePastEvents);
-document.addEventListener("DOMContentLoaded", hidePastEventTicketBtns);
+document.addEventListener("DOMContentLoaded", hidePastEventActions);
